@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Navigation from "./components/navigation";
-import Main from "./components/mainPage";
 import SignIn from "./components/signInPage";
-import Scheduler from "./components/SchedulerPage";
-import Setting from "./components/settingPage";
+import Main from "./components/pages/mainPage";
+import Scheduler from "./components/pages/SchedulerPage";
+import Setting from "./components/pages/settingPage";
 
 function Router() {
   return (

@@ -1,5 +1,6 @@
-import { url } from '../modules/Url'
+import { url } from '../../modules/Url'
 import axios from 'axios'
+import styled from 'styled-components';
 
 const getEvents = async () => {
   try {
@@ -32,7 +33,7 @@ const addEvent = async () => {
 
 function Main() {
   return (
-    <div>
+    <RenderBox>
       MainPage
       <button onClick={getEvents}>
         getEvents
@@ -40,8 +41,12 @@ function Main() {
       <button onClick={addEvent}>
         addEvents
       </button>
-    </div>
+    </RenderBox>
   )
 }
+
+const RenderBox = styled.div`
+  margin: 10px;
+`
 
 export default Main;
