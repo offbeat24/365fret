@@ -25,13 +25,9 @@ function Navigation({ setFlag }){
 }
 
 const Nav = styled.div`
-    height: 50px;
+    height: 40px;
     display: flex;
     justify-content: space-between;
-    margin: 10px;
-    border-bottom-color: #4472C4;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
 `
 
 const Logo = styled.a`
