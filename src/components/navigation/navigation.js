@@ -1,28 +1,23 @@
-import {Link} from "react-router-dom";
 import Main from './Main.png';
 import Scheduler from './Scheduler.png';
 import Setting from './Setting.png';
 import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useState } from 'react';
 
 function Navigation(){
+    const [ flag, setFlag ] = useState(1);
+    const clickIcon = (num) => {
+        setFlag(num);
+    };
     return(
         <Nav>
             <CssBaseline/>
-            <Logo>365fret</Logo>
+              <Logo>365fret</Logo>
             <NavLinkBox>
-                <NavBtnImg src={Main}/>
-                <NavBtnImg src={Scheduler}/>
-                <NavBtnImg src={Setting}/>
-                {/* <NavLink>
-                    <Link to={{pathname: `/main`}}>Main</Link>
-                </NavLink>
-                <NavLink>
-                    <Link to={{pathname: `/scheduler`}}>Scheduler</Link>
-                </NavLink>
-                <NavLink>
-                    <Link to={{pathname: `/setting`}}>Setting</Link>
-                </NavLink> */}
+                <NavBtnImg onClick={clickIcon(1)} src={Main}/>
+                <NavBtnImg onClick={clickIcon(2)} src={Scheduler}/>
+                <NavBtnImg onClick={clickIcon(3)} src={Setting}/>
                 <NavLink>
                     <Circle>JH</Circle>
                 </NavLink>

@@ -54,17 +54,17 @@ function Main() {
 
   return (
     <RenderBox>
-      MainPage
+      MainPage<br/>
       <button onClick={getEvents}>
         getEvents
-      </button>
+      </button><br/>
       <button onClick={addEvent}>
         addEvents
-      </button>
+      </button><br/>
       <input
         onChange={(e) => setEventKey(e.target.value)}
         placeholder='지울 이벤트 key 입력'
-        />
+        /><br/>
       <button onClick={deleteEvent}>
         deleteEvent
       </button>

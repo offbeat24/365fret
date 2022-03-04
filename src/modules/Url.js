@@ -1,1 +1,2 @@
-export const url = 'http://192.168.56.1:3000'
+export const url = 'http://10.20.10.35:3000'
+    
