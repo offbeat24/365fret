@@ -1,33 +1,29 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import Navigation from "./navigation/navigation";
-// import Main from "./signedPages/mainPage";
-// import Scheduler from "./signedPages/SchedulerPage";
-// import Setting from "./signedPages/settingPage";
+import Main from "./signedPages/mainPage";
+import Scheduler from "./signedPages/SchedulerPage";
+import Setting from "./signedPages/settingPage";
+import Test from "./signedPages/testPage";
 
 function SignedPages(){
-    function RenderBox({ renderFlag }){
-        return (
-            <div>MAINSPACE</div>
-        )
-        // if (renderFlag === 1){
-        //     return (
-        //         <Main/>
-        //     );
-        // }else if(renderFlag === 2){
-        //     return (
-        //         <Scheduler/>
-        //     );
-        // }else if(renderFlag === 3){
-        //     return (
-        //         <Setting/>
-        //     );
-        // }
+    const [ flag, setFlag ] = useState(1)
+    const RenderBox = () => {
+        let contents
+        if (flag === 1){
+            contents = <Main/>
+        }else if(flag === 2){
+            contents = <Scheduler/>
+        }else if(flag === 3){
+            contents = <Setting/>
+        }else if(flag === 4){
+            contents = <Test/>
+        }
+        return contents;
     };
-    useEffect(Navigation,[]);
     return (
         <div>
-            <Navigation/>
-            <RenderBox renderFlag={Navigation.flag} />
+            <Navigation setFlag={setFlag} />
+            <RenderBox />
         </div>
     );
 }
