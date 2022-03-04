@@ -1,5 +1,6 @@
-import { url } from '../modules/Url'
+import { url } from '../../modules/Url'
 import axios from 'axios'
+import styled from 'styled-components';
 import { useState } from 'react';
 
 const getEvents = async () => {
@@ -52,23 +53,27 @@ function Main() {
   }
 
   return (
-    <div>
-      MainPage
+    <RenderBox>
+      MainPage<br/>
       <button onClick={getEvents}>
         getEvents
-      </button>
+      </button><br/>
       <button onClick={addEvent}>
         addEvents
-      </button>
+      </button><br/>
       <input
         onChange={(e) => setEventKey(e.target.value)}
         placeholder='지울 이벤트 key 입력'
-        />
+        /><br/>
       <button onClick={deleteEvent}>
         deleteEvent
       </button>
-    </div>
+    </RenderBox>
   )
 }
+
+const RenderBox = styled.div`
+  margin: 10px;
+`
 
 export default Main;
