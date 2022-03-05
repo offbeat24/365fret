@@ -1,21 +1,20 @@
 /* eslint-disable react/jsx-no-undef */
 import { useState } from "react";
 import styled from 'styled-components'
-import MyPageNav from "./signedPages/myPage/myPageNavigation";
+import MyPageNav from "./myPageNavigation";
+import MyStatus from "./myStatus";
+import MyScheduler from "./myScheduleSetting";
+import MyVisitor from "./myVisitor";
 function MyPage() {
-    const [ flag, setFlag ] = useState(1)
+    const [ flag, setFlag ] = useState(0);
     const RenderBox = () => {
         let contents
         if(flag === 0){
-            contents = <Test/>
+            contents = <MyStatus/>
         } else if (flag === 1){
-            contents = <Main/>
+            contents = <MyScheduler/>
         }else if(flag === 2){
-            contents = <Scheduler/>
-        }else if(flag === 3){
-            contents = <Setting/>
-        }else if(flag === 4){
-            contents = <MyPage/>
+            contents = <MyVisitor/>
         }
         return contents;
     };
@@ -29,7 +28,7 @@ function MyPage() {
                 <Circle>JH</Circle>
             </MyProfileContainerDiv>
             <br/>
-            <MyPageNavigationDiv><MyPageNav /></MyPageNavigationDiv>
+            <MyPageNav setFlag={setFlag}/>
             <BoldLine />
             <RenderBoxStyle><RenderBox /></RenderBoxStyle>
             <BoldLine />
@@ -44,7 +43,7 @@ const MyProfileContainerDiv = styled.div`
 `
 const MyProfileDIV = styled.div`
     background-color: #88B9D7;
-    border-radius: 8%;
+    border-radius: 0.5rem;
     height: 130px;
     position: relative;
     z-index: 2;
@@ -73,10 +72,6 @@ const Circle = styled.div`
     position: absolute;
     z-index: 3;
     box-shadow: 3px 3px 3px gray;
-`
-
-const MyPageNavigationDiv = styled.div`
-
 `
 
 const BoldLine = styled.hr`
