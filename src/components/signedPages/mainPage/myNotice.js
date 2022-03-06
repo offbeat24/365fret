@@ -34,11 +34,11 @@ const MyNoticeDIV = styled.div`
     justify-content:center;
 `
 
-// const CurrentEventDIV = styled.div`
-//     align-items:center;
-//     margin-top: 10px;
-//     margin-bottom:5px;
-// `
+const CurrentEventDIV = styled.div`
+    align-items:center;
+    margin-top: 10px;
+    margin-bottom:5px;
+`
 
 const CurrentEventInform = styled.div`
     text-align:center;
