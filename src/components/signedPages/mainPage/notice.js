@@ -5,7 +5,7 @@ function Notice(){
         <NoticeDIV>
             <Title>NOTICE</Title>
             <BoldLine/>
-            <PostDIV><br/>
+            <PostDIV>
                 <PostTitle>
                     2022 새터 녹음 관련 공지
                 </PostTitle>
@@ -18,7 +18,7 @@ function Notice(){
                 </PostInformation>
             </PostDIV>
             <Line/>
-            <PostDIV><br/>
+            <PostDIV>
                 <PostTitle>
                     2021 정기공연 영상 업로드 일정 공지
                 </PostTitle>
@@ -31,7 +31,7 @@ function Notice(){
                 </PostInformation>
             </PostDIV>
             <Line/>
-            <PostDIV><br/>
+            <PostDIV>
                 <PostTitle>
                     TITLE
                 </PostTitle>
@@ -44,7 +44,7 @@ function Notice(){
                 </PostInformation>
             </PostDIV>
             <Line/>
-            <PostDIV><br/>
+            <PostDIV>
                 <PostTitle>
                     TITLE
                 </PostTitle>
@@ -56,7 +56,6 @@ function Notice(){
                     <PostWritter>WRITTER</PostWritter>
                 </PostInformation>
             </PostDIV>
-            <Line/>
         </NoticeDIV>
     );
 }
@@ -65,7 +64,8 @@ const NoticeDIV = styled.div`
 `
 
 const PostDIV = styled.div`
-    height: 130px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 5px;
 `
 
@@ -76,13 +76,15 @@ const PostTitle = styled.div`
 `
 
 const PostDetail = styled.div`
+    margin-top: 5px;
     color: #959595;
     margin: 5px;
-    font-size: 14px;
-    min-height:35px;
+    font-size: 13px;
+    height:40px;
 `
 
 const PostInformation = styled.div`
+    margin: 10px;
     display: flex;
     margin: 3px;
     justify-content: space-between;
@@ -113,7 +115,8 @@ const Line = styled.hr`
 `
 
 const Title = styled.div`
-    margin: 10px;
+    margin-top: 10px;
     font-size: 25px;
+    font-weight: bold;
 `
 export default Notice;

@@ -11,7 +11,7 @@ function Navigation({ setFlag }){
     return(
         <Nav>
             <CssBaseline/>
-                <Logo onClick={() => clickIcon(0)}>365fret</Logo>
+              <Logo onClick={() => clickIcon(1)}>365FRET</Logo>
             <NavLinkBox>
                 <NavBtnImg onClick={() => clickIcon(1)} src={Main}/>
                 <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
@@ -31,12 +31,13 @@ const Nav = styled.div`
 `
 
 const Logo = styled.a`
+    color: #222D65;
+    font-family: 'Anton', sans-serif;
     display: flex;
     align-items:center;
     font-size: 30px;
     margin: 0px;
     text-decoration: none;
-    color: black;
     font-weight: bold;
 `
 
