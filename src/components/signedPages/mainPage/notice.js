@@ -6,36 +6,49 @@ import { url } from '../../../modules/Url';
 
 function Notice() {
     const [notices, setNotices] = useState([]);
+    const [expanded, setExpanded] = useState(-1);
 
-    const getNotice = async () => {
-        await axios.get(
-            `${url}/getNotices`
-        ).then(response => {
-            setNotices(response.data.result.map(c => Object.assign(c, {flag:false})))
-        })
+    useEffect(() => {
+        const getData = async () => {
+            await axios.get(
+                `${url}/getNotices`
+            ).then(response => {
+                response.data.result.map(c => Object.assign(c, { flag: false }))
+                setNotices(response.data.result)
+            })
+        }
+        getData()
+    }, [])
+
+    const handleExpand = (key) => {
+        key === expanded?
+            setExpanded(-1)
+            :
+            setExpanded(key)
     }
-    useEffect(() => getNotice(), [])
 
-    return(
+    return (
         <NoticeDIV>
             <Title>NOTICE</Title>
             <BoldLine />
             {
-                notices.map((notice,i) => {
+                notices.map((notice, i) => {
                     return (
                         <div key={i}>
-                            <PostDIV >
+                            <PostDIV onClick={() =>handleExpand(i)}>
                                 <PostTitle>
                                     {notice.title}
                                 </PostTitle>
+
                                 <PostDetail>
                                     {
-                                        notice.detail < 50 ?
+                                        expanded === i ?
                                             notice.detail
                                             :
                                             notice.detail.substr(0, 50) + '...'
                                     }
                                 </PostDetail>
+
                                 <PostInformation>
                                     <PostDate>{yyyymmddday(notice.post_date)}</PostDate>
                                     <PostWritter>{notice.year}기 {notice.name}</PostWritter>
@@ -70,7 +83,7 @@ const PostDetail = styled.div`
     color: #959595;
     margin: 5px;
     font-size: 13px;
-    height:40px;
+    min-height:40px;
 `
 
 const PostInformation = styled.div`
