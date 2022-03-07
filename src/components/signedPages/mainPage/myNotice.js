@@ -1,27 +1,72 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import UserID from '../../recoil/userID';
+import { useRecoilValue } from 'recoil';
+import { url } from '../../../modules/Url';
 
 function MyNotice(){
+    const ID = useRecoilValue(UserID);
+    const [userEvents, setUserEvents] = useState(0);
+    const today = useState(new Date());
+
+    useEffect(() => {
+        const getUserEvents = async () => {
+            await axios.post(
+                `${url}/getUserEvents`,
+                { userID: ID },
+            ).then(response => {
+                setUserEvents(response.data)
+            })
+        };
+        getUserEvents();
+    }, [ ID ]);
+
     return(
         <MyNoticeDIV>
             <CurrentEventDIV>
-                <CurrentEventInform>오늘은 '2022 새터' 합주일입니다.</CurrentEventInform>
+                <CurrentEventInform>
+                {
+                    userEvents === 0?
+                    "Loading..."
+                    :
+                    (
+                        userEvents.length === 0 ?
+                        "참여 중인 이벤트가 없습니다."
+                        :
+                        (
+                            (parseInt(userEvents[0].eventdate.slice(8,10)) - today[0].getDate()) === 0?
+                            "오늘은 '" + userEvents[0].name + "'입니다."
+                            :
+                            "'" + userEvents[0].name + "'가 " +
+                            (parseInt(userEvents[0].eventdate.slice(8,10)) - today[0].getDate())
+                            + "일 남았습니다."
+                        )
+                    )
+                }
+                </CurrentEventInform>
             </CurrentEventDIV>
             <MyEventBoxDIV>
-                <MyEventDIV>
-                    <MyEventName>2022 새로 배움터</MyEventName>
-                    <MyEventPlace>도쿄돔</MyEventPlace>
-                    <MyEventDueDate>D-2</MyEventDueDate>
-                </MyEventDIV>
-                <MyEventDIV>
-                    <MyEventName>2023 월계축전</MyEventName>
-                    <MyEventPlace>올림픽경기장</MyEventPlace>
-                    <MyEventDueDate>D-131</MyEventDueDate>
-                </MyEventDIV>
-                <MyEventDIV>
-                    <MyEventName>2023 정기공연</MyEventName>
-                    <MyEventPlace>오페라하우스</MyEventPlace>
-                    <MyEventDueDate>D-225</MyEventDueDate>
-                </MyEventDIV>
+                {
+                    userEvents === 0?
+                    ""
+                    :
+                    (
+                        userEvents.slice(1,4).map((event,i) => {
+                            return (
+                                <div key={i}>
+                                    <MyEventDIV>
+                                        <MyEventName>{event.name}</MyEventName>
+                                        <MyEventPlace>{event.eventplace}</MyEventPlace>
+                                        <MyEventDueDate>
+                                        D-{parseInt(event.eventdate.slice(8,10)) - today[0].getDate()}
+                                        </MyEventDueDate>
+                                    </MyEventDIV>
+                                </div>
+                            )
+                        })
+                    )
+                }
             </MyEventBoxDIV>
         </MyNoticeDIV>
     );
@@ -34,11 +79,11 @@ const MyNoticeDIV = styled.div`
     justify-content:center;
 `
 
-// const CurrentEventDIV = styled.div`
-//     align-items:center;
-//     margin-top: 10px;
-//     margin-bottom:5px;
-// `
+const CurrentEventDIV = styled.div`
+    align-items:center;
+    margin-top: 10px;
+    margin-bottom:5px;
+`
 
 const CurrentEventInform = styled.div`
     text-align:center;

@@ -1,61 +1,64 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { yyyymmddday } from '../../../modules/timeMaker';
+import { url } from '../../../modules/Url';
 
-function Notice(){
-    return(
+function Notice() {
+    const [notices, setNotices] = useState([]);
+    const [expanded, setExpanded] = useState(-1);
+
+    useEffect(() => {
+        const getData = async () => {
+            await axios.get(
+                `${url}/getNotices`
+            ).then(response => {
+                response.data.result.map(c => Object.assign(c, { flag: false }))
+                setNotices(response.data.result)
+            })
+        }
+        getData();
+    }, [])
+
+    const handleExpand = (key) => {
+        key === expanded?
+            setExpanded(-1)
+            :
+            setExpanded(key)
+    }
+
+    return (
         <NoticeDIV>
             <Title>NOTICE</Title>
-            <BoldLine/>
-            <PostDIV>
-                <PostTitle>
-                    2022 새터 녹음 관련 공지
-                </PostTitle>
-                <PostDetail>
-                    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이...
-                </PostDetail>
-                <PostInformation>
-                    <PostDate>2022.02.10(목)</PostDate>
-                    <PostWritter>31기 김보균</PostWritter>
-                </PostInformation>
-            </PostDIV>
-            <Line/>
-            <PostDIV>
-                <PostTitle>
-                    2021 정기공연 영상 업로드 일정 공지
-                </PostTitle>
-                <PostDetail>
-                    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이...
-                </PostDetail>
-                <PostInformation>
-                    <PostDate>2021.11.27(토)</PostDate>
-                    <PostWritter>31기 이시연</PostWritter>
-                </PostInformation>
-            </PostDIV>
-            <Line/>
-            <PostDIV>
-                <PostTitle>
-                    TITLE
-                </PostTitle>
-                <PostDetail>
-                    detail
-                </PostDetail>
-                <PostInformation>
-                    <PostDate>DATE</PostDate>
-                    <PostWritter>WRITTER</PostWritter>
-                </PostInformation>
-            </PostDIV>
-            <Line/>
-            <PostDIV>
-                <PostTitle>
-                    TITLE
-                </PostTitle>
-                <PostDetail>
-                    detail
-                </PostDetail>
-                <PostInformation>
-                    <PostDate>DATE</PostDate>
-                    <PostWritter>WRITTER</PostWritter>
-                </PostInformation>
-            </PostDIV>
+            <BoldLine />
+            {
+                notices.map((notice, i) => {
+                    return (
+                        <div key={i}>
+                            <PostDIV onClick={() =>handleExpand(i)}>
+                                <PostTitle>
+                                    {notice.title}
+                                </PostTitle>
+
+                                <PostDetail>
+                                    {
+                                        expanded === i ?
+                                            notice.detail
+                                            :
+                                            notice.detail.substr(0, 50) + '...'
+                                    }
+                                </PostDetail>
+ 
+                                <PostInformation>
+                                    <PostDate>{yyyymmddday(notice.post_date)}</PostDate>
+                                    <PostWritter>{notice.year}기 {notice.name}</PostWritter>
+                                </PostInformation>
+                            </PostDIV>
+                            <Line/>
+                        </div>
+                    )
+                })
+            }
         </NoticeDIV>
     );
 }
@@ -80,7 +83,7 @@ const PostDetail = styled.div`
     color: #959595;
     margin: 5px;
     font-size: 13px;
-    height:40px;
+    min-height:40px;
 `
 
 const PostInformation = styled.div`
@@ -102,16 +105,16 @@ const PostWritter = styled.div`
     font-weight: bold;
 `
 
-const BoldLine = styled.hr`
-    background-color: #4472C4;
-    border: 0px;
-    height: 3px;
-`
 
 const Line = styled.hr`
     background-color: #4472C4;
     border: 0px;
     height: 1px;
+`
+const BoldLine = styled.hr`
+    background-color: #4472C4;
+    border: 0px;
+    height: 3px;
 `
 
 const Title = styled.div`
