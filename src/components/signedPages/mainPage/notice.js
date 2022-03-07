@@ -17,7 +17,7 @@ function Notice() {
                 setNotices(response.data.result)
             })
         }
-        getData()
+        getData();
     }, [])
 
     const handleExpand = (key) => {
@@ -48,7 +48,7 @@ function Notice() {
                                             notice.detail.substr(0, 50) + '...'
                                     }
                                 </PostDetail>
-
+ 
                                 <PostInformation>
                                     <PostDate>{yyyymmddday(notice.post_date)}</PostDate>
                                     <PostWritter>{notice.year}기 {notice.name}</PostWritter>

@@ -2,6 +2,8 @@ import { url } from '../../modules/Url'
 import axios from 'axios'
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import UserID from '../recoil/userID';
 
 const getEvents = async () => {
   try {
@@ -23,7 +25,8 @@ const addEvent = async () => {
         "테스트합주",
         "1900-00-00 00:00:01",
         "1901-00-00 00:00:01",
-        "1902-00-00 00:00:01"
+        "1902-00-00 00:00:01",
+        "온라인"
       ]
     );
     console.log(response.data)
@@ -52,24 +55,39 @@ function Test() {
     }
   }
 
+  const setID = useSetRecoilState(UserID);
+  const [wantID, setWantID] = useState(1);
+  const changeUserID = () => {
+    setID(parseInt(wantID));
+    console.log(`Log-In ID: ${wantID}`);
+  }
+
   return (
     <RenderBox>
       DB접근 테스트페이지<br/>
       <button onClick={getEvents}>
         getEvents
-      </button><br/>
+      </button><br/><br/>
       <button onClick={addEvent}>
         addEvents
-      </button><br/>
+      </button><br/><br/>
       <input
         onChange={(e) => setEventKey(e.target.value)}
         placeholder='지울 이벤트 key 입력'
-        /><br/>
+        />
       <button onClick={deleteEvent}>
         deleteEvent
+      </button><br/><br/>
+      <input
+        onChange={(e) => setWantID(e.target.value)}
+        placeholder='user ID 입력'
+      />
+      <button onClick={changeUserID}>
+          testButtonToMainPage
       </button>
     </RenderBox>
   )
+
 }
 
 const RenderBox = styled.div`

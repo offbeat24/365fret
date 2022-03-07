@@ -11,7 +11,7 @@ function Navigation({ setFlag }){
     return(
         <Nav>
             <CssBaseline/>
-              <Logo onClick={() => clickIcon(1)}>365FRET</Logo>
+              <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
             <NavLinkBox>
                 <NavBtnImg onClick={() => clickIcon(1)} src={Main}/>
                 <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
