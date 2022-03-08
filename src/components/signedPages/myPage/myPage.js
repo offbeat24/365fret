@@ -44,7 +44,7 @@ const MyProfileContainerDiv = styled.div`
 const MyProfileDIV = styled.div`
     background-color: #88B9D7;
     border-radius: 0.5rem;
-    height: 130px;
+    height: 150px;
     position: relative;
     z-index: 2;
 `
@@ -59,7 +59,7 @@ const MyProfileName = styled.div`
     left: 13.1%;
 `
 const Circle = styled.div`
-    margin-top: -160px;
+    margin-top: -165px;
     margin-left: 30px;
     width: 100px;
     height: 100px;

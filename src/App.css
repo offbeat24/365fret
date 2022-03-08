@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Anton;
+    src: url('./styles/fonts/Anton.ttf');
+}
+@font-face {
+    font-family: NanumGothic;
+    src: url("./styles/fonts/NanumGothic.ttf")
+}

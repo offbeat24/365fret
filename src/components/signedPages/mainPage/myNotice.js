@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import UserID from '../../recoil/userID';
+import {UserID} from '../../recoil';
 import { useRecoilValue } from 'recoil';
 import { url } from '../../../modules/Url';
 
@@ -107,19 +107,16 @@ const MyEventDIV = styled.div`
 `
 
 const MyEventName = styled.div`
-    color: #959595;
     text-align:left;
     min-width:140px;
 `
 
 const MyEventPlace = styled.div`
-    color: #959595;
     text-align:left;
     min-width:100px;
 `
 
 const MyEventDueDate = styled.div`
-    color: #959595;
     text-align:right;
     min-width:50px;
 `

@@ -25,6 +25,10 @@ function Navigation({ setFlag }){
 }
 
 const Nav = styled.div`
+    margin-left: 18px;
+    margin-right: 18px;
+    margin-top: 13px;
+    margin-bottom: 10px;
     height: 40px;
     display: flex;
     justify-content: space-between;
@@ -35,10 +39,9 @@ const Logo = styled.a`
     font-family: 'Anton', sans-serif;
     display: flex;
     align-items:center;
-    font-size: 30px;
+    font-size: 35px;
     margin: 0px;
     text-decoration: none;
-    font-weight: bold;
 `
 
 const NavLinkBox = styled.div`
@@ -57,7 +60,10 @@ const NavLink = styled.a`
 const NavBtnImg = styled.img`
     width: 30px;
     height: 30px;
-    margin: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
 `
 
 const Circle = styled.div`

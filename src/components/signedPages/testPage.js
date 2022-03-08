@@ -3,7 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import UserID from '../recoil/userID';
+import {UserID} from '../recoil';
 
 const getEvents = async () => {
   try {
