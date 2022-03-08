@@ -5,6 +5,8 @@ import MyPageNav from "./myPageNavigation";
 import MyStatus from "./myStatus";
 import MyScheduler from "./myScheduleSetting";
 import MyVisitor from "./myVisitor";
+import MyProfile from "./myProfile";
+
 function MyPage() {
     const [ flag, setFlag ] = useState(0);
     const RenderBox = () => {
@@ -18,15 +20,11 @@ function MyPage() {
         }
         return contents;
     };
+
     return (
         <Page>
             <br/>
-            <MyProfileContainerDiv>
-                <MyProfileDIV>
-                    <MyProfileName>31기<br/>박지한</MyProfileName>
-                </MyProfileDIV>
-                <Circle>JH</Circle>
-            </MyProfileContainerDiv>
+            <MyProfileDIV><MyProfile/></MyProfileDIV>
             <br/>
             <MyPageNav setFlag={setFlag}/>
             <BoldLine />
@@ -37,16 +35,10 @@ function MyPage() {
 }
 
 const Page = styled.div`
-`
-const MyProfileContainerDiv = styled.div`
-
+    margin: 10px;
 `
 const MyProfileDIV = styled.div`
-    background-color: #88B9D7;
     border-radius: 0.5rem;
-    height: 150px;
-    position: relative;
-    z-index: 2;
 `
 const MyProfileName = styled.div`
     text-align: center;
