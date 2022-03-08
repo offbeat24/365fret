@@ -5,6 +5,8 @@ import MyPageNav from "./myPageNavigation";
 import MyStatus from "./myStatus";
 import MyScheduler from "./myScheduleSetting";
 import MyVisitor from "./myVisitor";
+import MyProfile from "./myProfile";
+
 function MyPage() {
     const [ flag, setFlag ] = useState(0);
     const RenderBox = () => {
@@ -18,15 +20,11 @@ function MyPage() {
         }
         return contents;
     };
+
     return (
         <Page>
             <br/>
-            <MyProfileContainerDiv>
-                <MyProfileDIV>
-                    <MyProfileName>31기<br/>박지한</MyProfileName>
-                </MyProfileDIV>
-                <Circle>JH</Circle>
-            </MyProfileContainerDiv>
+            <MyProfile/>
             <br/>
             <MyPageNav setFlag={setFlag}/>
             <BoldLine />
@@ -38,41 +36,7 @@ function MyPage() {
 
 const Page = styled.div`
 `
-const MyProfileContainerDiv = styled.div`
 
-`
-const MyProfileDIV = styled.div`
-    background-color: #88B9D7;
-    border-radius: 0.5rem;
-    height: 130px;
-    position: relative;
-    z-index: 2;
-`
-const MyProfileName = styled.div`
-    text-align: center;
-    text-justify: auto;
-    font-weight: bold; 
-    font-size: 20px;
-    z-index: 3;
-    position: absolute;
-    top: 55%;
-    left: 13.1%;
-`
-const Circle = styled.div`
-    margin-top: -160px;
-    margin-left: 30px;
-    width: 100px;
-    height: 100px;
-    background-color: #4472C4;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 100px;
-    font-weight: bold;
-    font-size: 50px;
-    position: absolute;
-    z-index: 3;
-    box-shadow: 3px 3px 3px gray;
-`
 
 const BoldLine = styled.hr`
     background-color: #4472C4;
