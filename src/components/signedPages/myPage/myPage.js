@@ -40,6 +40,7 @@ const Page = styled.div`
 const MyProfileDIV = styled.div`
     border-radius: 0.5rem;
 `
+/*
 const MyProfileName = styled.div`
     text-align: center;
     text-justify: auto;
@@ -65,7 +66,7 @@ const Circle = styled.div`
     z-index: 3;
     box-shadow: 3px 3px 3px gray;
 `
-
+*/
 const BoldLine = styled.hr`
     background-color: #4472C4;
     border: 0px;

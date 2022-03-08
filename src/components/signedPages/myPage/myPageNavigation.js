@@ -9,32 +9,47 @@ function MyPageNavigation({ setFlag }){
     return(
         <Nav>
             <CssBaseline/>
-            <NavLinkBox>
-                <NavBtnTxt onClick={() => clickIcon(0)}>Status</NavBtnTxt>
-                <NavBtnTxt onClick={() => clickIcon(1)}>Scheduler</NavBtnTxt>
-                <NavBtnTxt onClick={() => clickIcon(2)}>Visitor</NavBtnTxt>
-            </NavLinkBox>
+            <NavBtn1 onClick={() => clickIcon(0)}>
+                Status
+            </NavBtn1>
+            <NavBtn2 onClick={() => clickIcon(1)}>
+                Scheduler
+            </NavBtn2>
+            <NavBtn3 onClick={() => clickIcon(2)}>
+                Visitor
+            </NavBtn3>
         </Nav>
     );
 }
 
 const Nav = styled.div`
+    margin-left: 20px;
+    margin-right: 20px;
     height: 20px;
     display: flex;
     justify-content: space-between;
-`
-
-const NavLinkBox = styled.div`
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 10px;
 `
 
-const NavBtnTxt = styled.div`
+const NavBtn1 = styled.div`
     font-size: 15px;
     font-weight: bold;
-    margin-right: 12px;    
+    width: 70px;
+    text-align: left;
+`
+
+const NavBtn2 = styled.div`
+    font-size: 15px;
+    font-weight: bold;
+    width: 70px;
+    text-align: center;
+`
+
+const NavBtn3 = styled.div`
+    font-size: 15px;
+    font-weight: bold;
+    width: 70px;
+    text-align: right;
 `
 
 export default MyPageNavigation;

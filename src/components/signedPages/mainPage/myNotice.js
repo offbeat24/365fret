@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {UserID} from '../../recoil';
+import { UserID } from '../../recoil';
 import { useRecoilValue } from 'recoil';
 import { url } from '../../../modules/Url';
 

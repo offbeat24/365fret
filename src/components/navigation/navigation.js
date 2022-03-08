@@ -3,8 +3,27 @@ import Scheduler from './Scheduler.png';
 import Setting from './Setting.png';
 import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { UserID } from '../recoil';
+import { url } from '../../modules/Url';
 
 function Navigation({ setFlag }){
+    const ID = useRecoilValue(UserID);
+    const [userProfile, setUserProfile] = useState(0);
+    useEffect(() => {
+        const getUserProfile = async () => {
+            await axios.post(
+                `${url}/getUserProfile`,
+                { userID: ID },
+            ).then(response => {
+                setUserProfile(response.data);
+            })
+        };
+        getUserProfile();
+    }, [ ID ]);
+
     const clickIcon = (num) => {
         setFlag(num);
     };
@@ -17,7 +36,14 @@ function Navigation({ setFlag }){
                 <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
                 <NavBtnImg onClick={() => clickIcon(3)} src={Setting}/>
                 <NavLink>
-                    <Circle onClick={() => clickIcon(4)}>JH</Circle>
+                    <Circle onClick={() => clickIcon(4)}>
+                        {
+                            userProfile === 0 ?
+                            ''
+                            :
+                            userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
+                        }
+                    </Circle>
                 </NavLink>
             </NavLinkBox>
         </Nav>
