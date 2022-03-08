@@ -24,7 +24,7 @@ function MyPage() {
     return (
         <Page>
             <br/>
-            <MyProfile/>
+            <MyProfileDIV><MyProfile/></MyProfileDIV>
             <br/>
             <MyPageNav setFlag={setFlag}/>
             <BoldLine />
@@ -35,9 +35,38 @@ function MyPage() {
 }
 
 const Page = styled.div`
+    margin: 10px;
 `
-
-
+const MyProfileDIV = styled.div`
+    border-radius: 0.5rem;
+`
+/*
+const MyProfileName = styled.div`
+    text-align: center;
+    text-justify: auto;
+    font-weight: bold; 
+    font-size: 20px;
+    z-index: 3;
+    position: absolute;
+    top: 55%;
+    left: 13.1%;
+`
+const Circle = styled.div`
+    margin-top: -165px;
+    margin-left: 30px;
+    width: 100px;
+    height: 100px;
+    background-color: #4472C4;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 50px;
+    position: absolute;
+    z-index: 3;
+    box-shadow: 3px 3px 3px gray;
+`
+*/
 const BoldLine = styled.hr`
     background-color: #4472C4;
     border: 0px;

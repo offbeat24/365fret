@@ -29,6 +29,7 @@ function Notice() {
 
     return (
         <NoticeDIV>
+        <br/>
             <Title>NOTICE</Title>
             <BoldLine />
             {
@@ -45,10 +46,9 @@ function Notice() {
                                         expanded === i ?
                                             notice.detail
                                             :
-                                            notice.detail.substr(0, 50) + '...'
+                                            ''
                                     }
                                 </PostDetail>
- 
                                 <PostInformation>
                                     <PostDate>{yyyymmddday(notice.post_date)}</PostDate>
                                     <PostWritter>{notice.year}기 {notice.name}</PostWritter>
@@ -59,6 +59,7 @@ function Notice() {
                     )
                 })
             }
+        <br/>
         </NoticeDIV>
     );
 }
@@ -67,44 +68,53 @@ const NoticeDIV = styled.div`
 `
 
 const PostDIV = styled.div`
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 0.5rem;
     font-size: 5px;
+    overflow: auto;
 `
 
 const PostTitle = styled.div`
     margin: 3px;
+    margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
+    color: #222D65;
 `
 
 const PostDetail = styled.div`
-    margin-top: 5px;
-    color: #959595;
-    margin: 5px;
+    word-wrap: break-word;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #000000;
     font-size: 13px;
-    min-height:40px;
+    min-height:0px;
 `
 
 const PostInformation = styled.div`
-    margin: 10px;
     display: flex;
     margin: 3px;
+    margin-bottom: 10px;
     justify-content: space-between;
 `
 
 const PostDate = styled.div`
     width: 170px;
-    font-size: 16px;
+    margin-bottom: -10px;
+    font-size: 13px;
+    color: #222D65;
 `
 
 const PostWritter = styled.div`
-    font-size: 18px;
+    font-size: 13px;
     text-align:right;
     width: 170px;
     font-weight: bold;
+    color: #222D65;
 `
-
 
 const Line = styled.hr`
     background-color: #4472C4;
@@ -118,8 +128,9 @@ const BoldLine = styled.hr`
 `
 
 const Title = styled.div`
-    margin-top: 10px;
-    font-size: 25px;
+    color: #222D65;
+    margin-left: 5px;
+    font-size: 23px;
     font-weight: bold;
 `
 export default Notice;

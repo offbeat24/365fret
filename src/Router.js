@@ -20,6 +20,6 @@ function Router() {
 }
 
 const TempTheme = styled.div`
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: NanumGothic;
 `
 export default Router;

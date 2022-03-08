@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { useRecoilValue } from 'recoil';
-import UserID from '../../recoil/userID';
+import { UserID } from '../../recoil';
 import { url } from '../../../modules/Url';
 
 function MyProfile() {
@@ -14,25 +14,36 @@ function MyProfile() {
                 `${url}/getUserProfile`,
                 { userID: ID },
             ).then(response => {
-                setUserProfile(response.data)
+                setUserProfile(response.data);
             })
         };
         getUserProfile();
     }, [ ID ]);
-    console.log(userProfile);
+
     return(
         <MyProfileContainerDiv>
             <MyProfileDIV>
-                <MyProfileName>
+                <ProfileLeftInf>
+                    <Circle>
                     {
-                        parseInt(userProfile[0].year) + "기 \n" + userProfile[0].name
+                        userProfile !== 0 ?
+                        userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
+                        :
+                        ''
                     }
-                </MyProfileName>
-                <Circle>
+                    </Circle>
+                    <MyProfileName>
                     {
-                        userProfile[0].name[2]
+                        userProfile !== 0 ?
+                        String(userProfile[userProfile.length-1].year) + "기\n" + userProfile[userProfile.length-1].name
+                        :
+                        ''
                     }
-                </Circle>
+                    </MyProfileName>
+                </ProfileLeftInf>
+                <ProfileRightInf>
+
+                </ProfileRightInf>
             </MyProfileDIV>
         </MyProfileContainerDiv>
     )
@@ -45,23 +56,35 @@ const MyProfileContainerDiv = styled.div`
 const MyProfileDIV = styled.div`
     background-color: #88B9D7;
     border-radius: 0.5rem;
-    height: 130px;
+    height: 160px;
     position: relative;
     z-index: 2;
+    display: flex;
+    justify-content: space-between;
 `
+
+const ProfileLeftInf = styled.div`
+
+`
+
+const ProfileRightInf = styled.div`
+    
+`
+
 const MyProfileName = styled.div`
-    text-align: right;
+    margin-top: 5px;
+    margin-left: 35px;
+    text-align: center;
     text-justify: auto;
     font-weight: bold; 
     font-size: 20px;
     z-index: 3;
-    position: absolute;
     top: 55%;
     left: 14.5%;
     white-space: pre-wrap;
 `
 const Circle = styled.div`
-    margin-top: -30px;
+    margin-top: -15px;
     margin-left: 30px;
     width: 100px;
     height: 100px;
@@ -71,7 +94,6 @@ const Circle = styled.div`
     line-height: 100px;
     font-weight: bold;
     font-size: 50px;
-    position: absolute;
     z-index: 3;
     box-shadow: 3px 3px 3px gray;
 `
