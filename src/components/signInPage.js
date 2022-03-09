@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link} from "react-router-dom";
+import {UserID} from './recoil';
+import { useSetRecoilState } from 'recoil';
 
 function Copyright(props) {
   return (
@@ -30,6 +32,13 @@ function Copyright(props) {
 const theme = createTheme();
 
 function SignIn(){
+  const setID = useSetRecoilState(UserID);
+  const [wantID, setWantID] = React.useState(1);
+  const changeUserID = () => {
+    setID(parseInt(wantID));
+    console.log(`Log-In ID: ${wantID}`);
+  }
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -103,7 +112,11 @@ function SignIn(){
                 {/* </Link> */}
               </Grid>
             </Grid>
-            <button>
+            <input
+              onChange={(e) => setWantID(e.target.value)}
+              placeholder='user ID 입력'
+            />
+            <button onClick={changeUserID}>
               <Link to={{
                 pathname: `/main`
               }}>

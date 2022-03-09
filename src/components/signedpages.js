@@ -4,53 +4,51 @@ import Main from "./signedPages/mainPage/mainPage";
 import Scheduler from "./signedPages/SchedulerPage";
 import Setting from "./signedPages/settingPage";
 import Test from "./signedPages/testPage";
+import MyPage from "./signedPages/myPage/myPage"
 import styled from 'styled-components';
-import Typography from '@mui/material/Typography';
 
 function SignedPages(){
     const [ flag, setFlag ] = useState(1)
     const RenderBox = () => {
         let contents
-        if (flag === 1){
+        if(flag === 0){
+            contents = <Test/>
+        } else if (flag === 1){
             contents = <Main/>
         }else if(flag === 2){
             contents = <Scheduler/>
         }else if(flag === 3){
             contents = <Setting/>
         }else if(flag === 4){
-            contents = <Test/>
+            contents = <MyPage/>
         }
         return contents;
     };
     return (
         <PageRender>
-            <Navigation setFlag={setFlag} />
-            <DivideLine />
+            <NavigationDIV><Navigation setFlag={setFlag} /></NavigationDIV>
+            <BoldLine />
             <RenderBoxStyle><RenderBox /></RenderBoxStyle>
-            <DivideLine />
             <ProducingInformation>
-                <Typography variant="body2" color="text.secondary" align="center">
                 Copyright © 14fret 늙은이들<br/>
                 ver 1.0.0<br/>
                 Updated 2022.03.04
-                </Typography>
             </ProducingInformation>
         </PageRender>
     );
 }
-
+const BoldLine = styled.hr`
+    background-color: #4472C4;
+    border: 0px;
+    height: 2px;
+`
 const PageRender = styled.div`
-    margin: 10px;
+`
+const NavigationDIV = styled.div`
 `
 
 const RenderBoxStyle = styled.div`
-    min-height: 750px;
-`
-
-const DivideLine = styled.hr`
-    background-color: #4472C4;
-    border: 0px;
-    height: 1px;
+    min-height: 730px;
 `
 
 const ProducingInformation = styled.div`
@@ -59,7 +57,9 @@ const ProducingInformation = styled.div`
     margin: 0px;
     text-decoration: none;
     color: black;
-    font-size: 10px;
+    font-size: 13px;
+    text-align:center;
+    font-color: #d3d3d3;
 `
 
 export default SignedPages;
