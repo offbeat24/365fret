@@ -29,7 +29,6 @@ function MyPage() {
             <MyPageNav setFlag={setFlag}/>
             <BoldLine />
             <RenderBoxStyle><RenderBox /></RenderBoxStyle>
-            <BoldLine />
         </Page>
     );
 }
@@ -74,7 +73,6 @@ const BoldLine = styled.hr`
 `
 
 const RenderBoxStyle = styled.div`
-    min-height: 750px;
 `
 export default MyPage;
 
