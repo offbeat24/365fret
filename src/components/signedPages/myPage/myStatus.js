@@ -8,6 +8,7 @@ import axios from 'axios';
 function MyStatus() {
   const ID = useRecoilValue(UserID);
   const [userEvents, setUserEvents] = useState(0);
+  const [expanded, setExpanded] = useState(0);
 
   useEffect(() => {
       const getUserEvents = async () => {
@@ -21,6 +22,13 @@ function MyStatus() {
       getUserEvents();
   }, [ ID ]);
 
+  const handleExpand = (key) => {
+      key === expanded?
+          setExpanded(-1)
+          :
+          setExpanded(key)
+  }
+
     return (
       <Page>
         {
@@ -31,7 +39,24 @@ function MyStatus() {
             userEvents.map((event,i) => {
               return (
                 <div key={i}>
-                  <MyNotEventDIV>{event.name}</MyNotEventDIV>
+                  <MyNotEventDIV onClick={() =>handleExpand(i)}>
+                    <EventDefault>
+                      <EventTitle>
+                        {event.name}
+                      </EventTitle>
+                      <EventDate>
+                        {event.eventdate.slice(0,10)}
+                      </EventDate>
+                    </EventDefault>
+                    <EventDetail>
+                      {
+                        expanded === i ?
+                        '디테일을 적어야해용'
+                        :
+                        ''
+                      }
+                    </EventDetail>
+                  </MyNotEventDIV>
                 </div>
               )
             })
@@ -49,9 +74,36 @@ const MyNotEventDIV = styled.div`
   background-color: #D9EDF8;
   border: solid #5E87B5 2px;
   border-radius: 0.5rem;
-  height: 60px;
-  margin: 5px;
+  min-height: 55px;
+  margin: 0px;
+  margin-top: 10px;
+  font-size: 5px;
   padding: 10px;
+`
+
+const EventDefault = styled.div`
+  margin-left: 5px;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+`
+
+const EventTitle = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`
+
+const EventDate = styled.div`
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  font-size: 15px;
+  font-weight: bold;
+`
+
+const EventDetail = styled.div`
+  font-size: 15px;
 `
 
 /*

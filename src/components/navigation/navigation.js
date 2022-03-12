@@ -28,25 +28,25 @@ function Navigation({ setFlag }){
         setFlag(num);
     };
     return(
-        <Nav>
-            <CssBaseline/>
-              <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
-            <NavLinkBox>
-                <NavBtnImg onClick={() => clickIcon(1)} src={Main}/>
-                <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
-                <NavBtnImg onClick={() => clickIcon(3)} src={Setting}/>
-                <NavLink>
-                    <Circle onClick={() => clickIcon(4)}>
-                        {
-                            userProfile === 0 ?
-                            ''
-                            :
-                            userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
-                        }
-                    </Circle>
-                </NavLink>
-            </NavLinkBox>
-        </Nav>
+            <Nav>
+                <CssBaseline/>
+                <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
+                <NavLinkBox>
+                    <NavBtnImg onClick={() => clickIcon(1)} src={Main}/>
+                    <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
+                    <NavBtnImg onClick={() => clickIcon(3)} src={Setting}/>
+                    <NavLink>
+                        <Circle onClick={() => clickIcon(4)}>
+                            {
+                                userProfile === 0 ?
+                                ''
+                                :
+                                userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
+                            }
+                        </Circle>
+                    </NavLink>
+                </NavLinkBox>
+            </Nav>
     );
 }
 
