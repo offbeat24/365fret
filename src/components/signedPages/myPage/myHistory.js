@@ -5,21 +5,21 @@ import { UserID } from '../../recoil';
 import { url } from '../../../modules/Url';
 import axios from 'axios';
 
-function MyStatus() {
+function MyHistory() {
   const ID = useRecoilValue(UserID);
-  const [userEvents, setUserComingEvents] = useState(0);
+  const [userEvents, setUserPassedEvents] = useState(0);
   const [expanded, setExpanded] = useState(0);
 
   useEffect(() => {
-      const getUserComingEvents = async () => {
+      const getUserPassedEvents = async () => {
           await axios.post(
-              `${url}/getUserComingEvents`,
+              `${url}/getUserPassedEvents`,
               { userID: ID },
           ).then(response => {
-              setUserComingEvents(response.data)
+              setUserPassedEvents(response.data)
           })
       };
-      getUserComingEvents();
+      getUserPassedEvents();
   }, [ ID ]);
 
   const handleExpand = (key) => {
@@ -71,8 +71,8 @@ const Page = styled.div`
 `
 
 const MyEventDIV = styled.div`
-  background-color: #D9EDF8;
-  border: solid #5E87B5 2px;
+  background-color: #D9BBA0;
+  border: solid #D9EDF8 2px;
   border-radius: 0.5rem;
   min-height: 55px;
   margin: 0px;
@@ -117,4 +117,5 @@ const MyEventDIV = styled.div`
 `
 */
 
-export default MyStatus;
+
+export default MyHistory;

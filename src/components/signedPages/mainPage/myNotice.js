@@ -7,19 +7,19 @@ import { url } from '../../../modules/Url';
 
 function MyNotice(){
     const ID = useRecoilValue(UserID);
-    const [userEvents, setUserEvents] = useState(0);
+    const [userEvents, setUserComingEvents] = useState(0);
     const today = useState(new Date());
 
     useEffect(() => {
-        const getUserEvents = async () => {
+        const getUserComingEvents = async () => {
             await axios.post(
-                `${url}/getUserEvents`,
+                `${url}/getUserComingEvents`,
                 { userID: ID },
             ).then(response => {
-                setUserEvents(response.data)
+                setUserComingEvents(response.data)
             })
         };
-        getUserEvents();
+        getUserComingEvents();
     }, [ ID ]);
 
     return(

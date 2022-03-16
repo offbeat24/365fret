@@ -13,7 +13,7 @@ function MyPageNavigation({ setFlag }){
                 Status
             </NavBtn1>
             <NavBtn2 onClick={() => clickIcon(1)}>
-                Scheduler
+                History
             </NavBtn2>
             <NavBtn3 onClick={() => clickIcon(2)}>
                 Visitor
