@@ -7,8 +7,7 @@ import axios from 'axios';
 
 function MyHistory() {
   const ID = useRecoilValue(UserID);
-  const [userEvents, setUserPassedEvents] = useState(0);
-  const [expanded, setExpanded] = useState(0);
+  const [userPassedEvents, setUserPassedEvents] = useState(0);
 
   useEffect(() => {
       const getUserPassedEvents = async () => {
@@ -22,100 +21,99 @@ function MyHistory() {
       getUserPassedEvents();
   }, [ ID ]);
 
-  const handleExpand = (key) => {
-      key === expanded?
-          setExpanded(-1)
-          :
-          setExpanded(key)
-  }
 
     return (
-      <Page>
-        {
-          userEvents === 0 ?
-          'Loading...'
-          :
-          (
-            userEvents.map((event,i) => {
-              return (
-                <div key={i}>
-                  <MyEventDIV onClick={() =>handleExpand(i)}>
-                    <EventDefault>
-                      <EventTitle>
-                        {event.name}
-                      </EventTitle>
-                      <EventDate>
-                        {event.eventdate.slice(0,10)}
-                      </EventDate>
-                    </EventDefault>
-                    <EventDetail>
-                      {
-                        expanded === i ?
-                        '디테일을 적어야해용'
-                        :
-                        ''
-                      }
-                    </EventDetail>
-                  </MyEventDIV>
-                </div>
+      <MyHistoryDIV>
+        <HistoryMsgDIV>
+          <HistoryMsg>
+            {
+              userPassedEvents === 0 ?
+              "Loading..."
+              :
+              (
+                userPassedEvents.length === 0 ?
+                "참여한 공연이 없습니다."
+                :
+                "공연에 " + userPassedEvents.length + "회 참여하셨군요!"
               )
-            })
-          )
-        }
-      </Page>
+            }
+          </HistoryMsg>
+        </HistoryMsgDIV>
+        <MyHistoryBoxDIV>
+          {
+            userPassedEvents === 0 ?
+            ""
+            :
+            (
+              userPassedEvents.map((event, i) => {
+                return (
+                  <div key={i}>
+                    <HistoryDIV>
+                      <HistoryName>{event.name}</HistoryName>
+                      <HistoryPlace>{event.eventplace}</HistoryPlace>
+                      <HistoryDate>{event.eventdate.slice(0,10)}</HistoryDate>
+                    </HistoryDIV>
+                  </div>
+                )
+              })
+            )
+          }
+        </MyHistoryBoxDIV>
+      </MyHistoryDIV>
   );
 }
 
-const Page = styled.div`
-  margin: 10px;
+const MyHistoryDIV = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 10px;
+    background-color: #D9EDF8;
+    border-radius: 0.5rem;
+    height: 100px;
 `
 
-const MyEventDIV = styled.div`
-  background-color: #D9BBA0;
-  border: solid #D9EDF8 2px;
-  border-radius: 0.5rem;
-  min-height: 55px;
-  margin: 0px;
-  margin-top: 10px;
-  font-size: 5px;
-  padding: 10px;
+const HistoryMsgDIV = styled.div`
+    align-items:center;
+    margin-bottom:5px;
 `
 
-const EventDefault = styled.div`
-  margin-left: 5px;
-  margin-right: 5px;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
+const HistoryMsg = styled.div`
+    text-align:center;
+    font-size: 21px;
+    color: #222D65;
+    font-weight:bold;
 `
 
-const EventTitle = styled.div`
-  font-size: 20px;
-  font-weight: bold;
+const MyHistoryBoxDIV = styled.div`
+    justify-content: space-between;
+    align-items:center;
+`
+const HistoryDIV = styled.div`
+    justify-content: space-between;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top:3px;
+    font-size: 14px;
+    min-width:330px;
 `
 
-const EventDate = styled.div`
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  font-size: 15px;
-  font-weight: bold;
+const HistoryName = styled.div`
+    text-align:left;
+    min-width:140px;
 `
 
-const EventDetail = styled.div`
-  font-size: 15px;
+const HistoryPlace = styled.div`
+    text-align:left;
+    min-width:100px;
 `
 
-/*
-const MyEventDIV = styled.div`
-  background-color: #5E87B5;
-  border-radius: 0.5rem;
-  border: solid #222565 1px;
-  height: 60px;
-  margin: 5px;
-  padding: 10px;
+const HistoryDate = styled.div`
+    text-align:right;
+    min-width:50px;
 `
-*/
+
 
 
 export default MyHistory;
