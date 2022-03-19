@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from 'styled-components'
 import MyPageNav from "./myPageNavigation";
 import MyStatus from "./myStatus";
-import MyScheduler from "./myScheduleSetting";
+import MyHistory from "./myHistory";
 import MyVisitor from "./myVisitor";
 import MyProfile from "./myProfile";
 
@@ -14,7 +14,7 @@ function MyPage() {
         if(flag === 0){
             contents = <MyStatus/>
         } else if (flag === 1){
-            contents = <MyScheduler/>
+            contents = <MyHistory/>
         }else if(flag === 2){
             contents = <MyVisitor/>
         }

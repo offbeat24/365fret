@@ -7,19 +7,19 @@ import axios from 'axios';
 
 function MyStatus() {
   const ID = useRecoilValue(UserID);
-  const [userEvents, setUserEvents] = useState(0);
+  const [userEvents, setUserComingEvents] = useState(0);
   const [expanded, setExpanded] = useState(0);
 
   useEffect(() => {
-      const getUserEvents = async () => {
+      const getUserComingEvents = async () => {
           await axios.post(
-              `${url}/getUserEvents`,
+              `${url}/getUserComingEvents`,
               { userID: ID },
           ).then(response => {
-              setUserEvents(response.data)
+              setUserComingEvents(response.data)
           })
       };
-      getUserEvents();
+      getUserComingEvents();
   }, [ ID ]);
 
   const handleExpand = (key) => {
@@ -33,13 +33,13 @@ function MyStatus() {
       <Page>
         {
           userEvents === 0 ?
-          ''
+          'Loading...'
           :
           (
             userEvents.map((event,i) => {
               return (
                 <div key={i}>
-                  <MyNotEventDIV onClick={() =>handleExpand(i)}>
+                  <MyEventDIV onClick={() =>handleExpand(i)}>
                     <EventDefault>
                       <EventTitle>
                         {event.name}
@@ -56,7 +56,7 @@ function MyStatus() {
                         ''
                       }
                     </EventDetail>
-                  </MyNotEventDIV>
+                  </MyEventDIV>
                 </div>
               )
             })
@@ -70,7 +70,7 @@ const Page = styled.div`
   margin: 10px;
 `
 
-const MyNotEventDIV = styled.div`
+const MyEventDIV = styled.div`
   background-color: #D9EDF8;
   border: solid #5E87B5 2px;
   border-radius: 0.5rem;

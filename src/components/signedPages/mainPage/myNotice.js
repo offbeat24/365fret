@@ -7,19 +7,19 @@ import { url } from '../../../modules/Url';
 
 function MyNotice(){
     const ID = useRecoilValue(UserID);
-    const [userEvents, setUserEvents] = useState(0);
+    const [userComingEvents, setUserComingEvents] = useState(0);
     const today = useState(new Date());
 
     useEffect(() => {
-        const getUserEvents = async () => {
+        const getUserComingEvents = async () => {
             await axios.post(
-                `${url}/getUserEvents`,
+                `${url}/getUserComingEvents`,
                 { userID: ID },
             ).then(response => {
-                setUserEvents(response.data)
+                setUserComingEvents(response.data)
             })
         };
-        getUserEvents();
+        getUserComingEvents();
     }, [ ID ]);
 
     return(
@@ -27,19 +27,19 @@ function MyNotice(){
             <CurrentEventDIV>
                 <CurrentEventInform>
                 {
-                    userEvents === 0?
+                    userComingEvents === 0?
                     "Loading..."
                     :
                     (
-                        userEvents.length === 0 ?
+                        userComingEvents.length === 0 ?
                         "참여 중인 이벤트가 없습니다."
                         :
                         (
-                            (parseInt(userEvents[0].eventdate.slice(8,10)) - today[0].getDate()) === 0?
-                            "오늘은 '" + userEvents[0].name + "'입니다."
+                            (parseInt(userComingEvents[0].eventdate.slice(8,10)) - today[0].getDate()) === 0?
+                            "오늘은 '" + userComingEvents[0].name + "'입니다."
                             :
-                            "'" + userEvents[0].name + "'가 " +
-                            (parseInt(userEvents[0].eventdate.slice(8,10)) - today[0].getDate())
+                            "'" + userComingEvents[0].name + "'가 " +
+                            (parseInt(userComingEvents[0].eventdate.slice(8,10)) - today[0].getDate())
                             + "일 남았습니다."
                         )
                     )
@@ -48,11 +48,11 @@ function MyNotice(){
             </CurrentEventDIV>
             <MyEventBoxDIV>
                 {
-                    userEvents === 0?
+                    userComingEvents === 0?
                     ""
                     :
                     (
-                        userEvents.slice(1,4).map((event,i) => {
+                        userComingEvents.slice(1,4).map((event,i) => {
                             return (
                                 <div key={i}>
                                     <MyEventDIV>
