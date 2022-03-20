@@ -26,7 +26,7 @@ function MyPage() {
             <br/>
             <MyProfileDIV><MyProfile/></MyProfileDIV>
             <br/>
-            <MyPageNav setFlag={setFlag}/>
+            <MyPageNav flag = {flag} setFlag={setFlag}/>
             <BoldLine />
             <RenderBoxStyle><RenderBox /></RenderBoxStyle>
         </Page>
@@ -67,7 +67,7 @@ const Circle = styled.div`
 `
 */
 const BoldLine = styled.hr`
-    background-color: #4472C4;
+    background-color: #88B9D7;
     border: 0px;
     height: 3px;
 `
