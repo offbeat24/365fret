@@ -1,6 +1,13 @@
-import Main from './Main.png';
-import Scheduler from './Scheduler.png';
-import Setting from './Setting.png';
+// import MainBlack from './MainBlack.png';
+//import SchedulerBlack from './SchedulerBlack.png';
+//import SettingBlack from './SettingBlack.png';
+import MainGray from './MainGray.png';
+import SchedulerGray from './SchedulerGray.png';
+import SettingGray from './SettingGray.png';
+// import MainWhite from './MainWhite.png';
+// import SchedulerWhite from './SchedulerWhite.png';
+// import SettingWhite from './SettingWhite.png';
+
 import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useRecoilValue } from 'recoil';
@@ -9,7 +16,7 @@ import axios from 'axios';
 import { UserID } from '../recoil';
 import { url } from '../../modules/Url';
 
-function Navigation({ setFlag }){
+function Navigation({ flag, setFlag }){
     const ID = useRecoilValue(UserID);
     const [userProfile, setUserProfile] = useState(0);
     useEffect(() => {
@@ -32,9 +39,9 @@ function Navigation({ setFlag }){
                 <CssBaseline/>
                 <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
                 <NavLinkBox>
-                    <NavBtnImg onClick={() => clickIcon(1)} src={Main}/>
-                    <NavBtnImg onClick={() => clickIcon(2)} src={Scheduler}/>
-                    <NavBtnImg onClick={() => clickIcon(3)} src={Setting}/>
+                    <MainContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(1)} src={MainGray}/></MainContainer>
+                    <SchedulerContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(2)} src={SchedulerGray}/></SchedulerContainer>
+                    <SettingContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(3)} src={SettingGray}/></SettingContainer>
                     <NavLink>
                         <Circle onClick={() => clickIcon(4)}>
                             {
@@ -82,16 +89,35 @@ const NavLink = styled.a`
     color: black;
     color: #222D65;
 `
+const ImgContainer = styled.div`
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    color: transparent;
+    z-index: 2;
+`
 
+const MainContainer = styled(ImgContainer)`
+    background-color: ${ props => ( props.flag === 1 ? '#4472C4' : '' )};
+`
+
+const SchedulerContainer = styled(ImgContainer)`
+    background-color: ${ props => ( props.flag === 2 ? '#4472C4' : '' )};
+`
+
+const SettingContainer = styled(ImgContainer)`
+    background-color: ${ props => ( props.flag === 3 ? '#4472C4' : '' )};
+`
 const NavBtnImg = styled.img`
     width: 30px;
     height: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 7px;
-    margin-bottom: 7px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 3;
 `
-
 const Circle = styled.div`
     margin: 0px;
     width: 35px;
