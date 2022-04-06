@@ -16,7 +16,7 @@ import axios from 'axios';
 import { UserID } from '../recoil';
 import { url } from '../../modules/Url';
 
-function Navigation({ flag, setFlag }){
+function Navigation({ flag, setExpanded, clickIcon }){
     const ID = useRecoilValue(UserID);
     const [userProfile, setUserProfile] = useState(0);
     useEffect(() => {
@@ -31,16 +31,17 @@ function Navigation({ flag, setFlag }){
         getUserProfile();
     }, [ ID ]);
 
-    const clickIcon = (num) => {
-        setFlag(num);
-    };
+    const expandSchedule = () => {
+        setExpanded(prev => !prev);
+    }
+    
     return(
             <Nav>
                 <CssBaseline/>
                 <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
                 <NavLinkBox>
                     <MainContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(1)} src={MainGray}/></MainContainer>
-                    <SchedulerContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(2)} src={SchedulerGray}/></SchedulerContainer>
+                    <SchedulerContainer><NavBtnImg flag = {flag} onClick={() => expandSchedule()} src={SchedulerGray}/></SchedulerContainer>
                     <SettingContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(3)} src={SettingGray}/></SettingContainer>
                     <NavLink>
                         <Circle onClick={() => clickIcon(4)}>
