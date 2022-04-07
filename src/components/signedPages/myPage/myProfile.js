@@ -21,37 +21,31 @@ function MyProfile() {
     }, [ ID ]);
 
     return(
-        <MyProfileContainerDiv>
-            <MyProfileDIV>
-                <ProfileLeftInf>
-                    <Circle>
-                    {
-                        userProfile !== 0 ?
-                        userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
-                        :
-                        ''
-                    }
-                    </Circle>
-                    <MyProfileName>
-                    {
-                        userProfile !== 0 ?
-                        String(userProfile[userProfile.length-1].year) + "기\n" + userProfile[userProfile.length-1].name
-                        :
-                        ''
-                    }
-                    </MyProfileName>
-                </ProfileLeftInf>
-                <ProfileRightInf>
+        <MyProfileDIV>
+            <ProfileLeftInf>
+                <Circle>
+                {
+                    userProfile !== 0 ?
+                    userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
+                    :
+                    ''
+                }
+                </Circle>
+                <MyProfileName>
+                {
+                    userProfile !== 0 ?
+                    String(userProfile[userProfile.length-1].year) + "기\n" + userProfile[userProfile.length-1].name
+                    :
+                    ''
+                }
+                </MyProfileName>
+            </ProfileLeftInf>
+            <ProfileRightInf>
 
-                </ProfileRightInf>
-            </MyProfileDIV>
-        </MyProfileContainerDiv>
+            </ProfileRightInf>
+        </MyProfileDIV>
     )
 }
-
-const MyProfileContainerDiv = styled.div`
-
-`
 
 const MyProfileDIV = styled.div`
     background-color: #88B9D7;
@@ -61,6 +55,7 @@ const MyProfileDIV = styled.div`
     z-index: 2;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.3);
 `
 
 const ProfileLeftInf = styled.div`

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { url } from '../../../modules/Url';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import ListFilter from './ListFilter.png';
 
 function OutputPage(){
     const [events, setEvents] = useState(0);
     const [eventsReformed, setEventsReformed] = useState(0);
-    const [expanded, setExpanded] = useState(0);
+    const [expanded, setExpanded] = useState(-1);
+    const [filterExpanded, setFilterExpanded] = useState(0);
 
     const handleExpand = (key) => {
         key === expanded?
@@ -16,7 +18,10 @@ function OutputPage(){
             :
             setExpanded(key)
     }
-    
+    const handleFilterExpanded = () => {
+        setFilterExpanded(prev => !prev);
+    }
+
     useEffect(() =>{
         const getEvents = async () => {
             await axios.get(
@@ -49,7 +54,7 @@ function OutputPage(){
                     }
                     eventsReformed.push(event)
                 })
-                setEventsReformed(eventsReformed)
+                setEventsReformed(eventsReformed);
             })
         }
         getEvents();
@@ -60,7 +65,7 @@ function OutputPage(){
         {
             eventsReformed === 0
             ?
-                'Loading...'
+                ''
             :
                 (
                     <CalendarDIV>
@@ -70,6 +75,10 @@ function OutputPage(){
                             left: 'prev',
                             center: 'title',
                             right: 'next'
+                            }}
+                            titleFormat={{
+                                month: 'numeric',
+                                year: 'numeric'
                             }}
                             initialView="dayGridMonth"
                             weekends={true}
@@ -83,6 +92,32 @@ function OutputPage(){
 
         }
             <OutputList>
+            <ListHeader>
+                <ListTitle>LIST</ListTitle>
+                <ListFilterIcon onClick={()=>handleFilterExpanded()} src={ListFilter}/>
+                {filterExpanded?
+                <ListFilterList>
+                    <ListFilterItem>
+                        <ListFilterDetail>지난 이벤트 보기</ListFilterDetail>
+                        <ListFilterCheck type="checkbox"/>
+                    </ListFilterItem>
+                    <ListFilterItem>
+                        <ListFilterDetail>참여 이벤트</ListFilterDetail>
+                        <ListFilterCheck type="checkbox"/>
+                    </ListFilterItem>
+                    <ListFilterItem>
+                        <ListFilterDetail>공연 일정</ListFilterDetail>
+                        <ListFilterCheck type="checkbox"/>
+                    </ListFilterItem>
+                    <ListFilterItem>
+                        <ListFilterDetail>합주 일정</ListFilterDetail>
+                        <ListFilterCheck type="checkbox"/>
+                    </ListFilterItem>
+                </ListFilterList>
+                :
+                ""
+                }
+            </ListHeader>
         {
           events === 0
           ?
@@ -151,44 +186,111 @@ const Page = styled.div`
   margin: 10px;
 `
 
+const ListHeader = styled.div`
+    padding:10px;
+    overflow:hidden;
+    clear:both;
+    margin-bottom:-10px;
+`
+
+const ListTitle = styled.div`
+    font-size:20px;
+    font-weight:bold;
+    float:left;
+`
+
+const ListFilterIcon = styled.img`
+    margin-top:5px;
+    width:20px;
+    float:right;
+`
+
+const ListFilterList = styled.div`
+    flex-wrap:wrap;
+    display:flex;
+    clear:both;
+    margin-top:5px;
+    margin-bottom:-10px;
+    padding-left:-3px;
+    padding-right:-3px;
+`
+
+const ListFilterItem = styled.div`
+    background-color: #D9EDF8;
+    border: solid #D9EDF8 1px;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);
+    width: 150px;
+    clear:both;
+    overflow:hidden;
+    margin-left:3px;
+    margin-right:3px;
+    margin-bottom:5px;
+    padding-left:3px;
+    padding-right:3px;
+`
+
+const ListFilterDetail = styled.div`
+    float:left;
+    padding-left:5px;
+    font-size:13px;
+    padding-top:1px;
+`
+
+const ListFilterCheck = styled.input`
+    margin-top: 5px;
+    font-size:20px;
+    float:right;
+    padding-right:5px;
+`
+
 const OutputList = styled.div`
+    background-color: #D9EDF8;
+    border: solid #D9EDF8 1px;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);
+    min-height: 10px;
+    padding: 10px;
+    padding-top:0px;
+    margin-top:10px;
 `
 
 const OutputEventDIV = styled.div`
-  background-color: #D9EDF8;
-  border: solid #5E87B5 2px;
-  border-radius: 0.5rem;
-  min-height: 55px;
-  margin: 0px;
-  margin-top: 10px;
-  font-size: 5px;
-  padding: 10px;
+    background-color: #D9EDF8;
+    border: solid #D9EDF8 1px;
+    border-radius: 0.5rem;
+    min-height: 55px;
+    margin-top: 10px;
+    font-size: 5px;
+    padding: 10px;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);
 `
 
 const OutputEventTitle = styled.a`
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 `
 
 const OutputEventDate = styled.a`
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  font-size: 15px;
-  font-weight: bold;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
 `
 
 const OutputEventDetail = styled.a`
-  margin-top: 5px;
-  margin-bottom: 5px;
-  white-space: pre-wrap;
-  font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    white-space: pre-wrap;
+    font-size: 13px;
+    font-weight: light;
 `
 
 const CalendarDIV = styled.div`
-    height: 428px;
+    padding: 10px;
+    min-height: 448px;
     flex-grow: 1;
-    margin-top: 30px;
 `
 
 export default OutputPage;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navigation from "./navigation/navigation";
 import Main from "./signedPages/mainPage/mainPage";
 import Setting from "./signedPages/settingPage/settingPage";
@@ -127,6 +127,7 @@ const BoldLine = styled.hr`
     margin-bottom:-1px;
 `
 const PageRender = styled.div`
+    margin:10px;
 `
 const NavigationDIV = styled.div`
 `

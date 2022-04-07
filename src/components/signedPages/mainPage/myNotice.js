@@ -77,6 +77,7 @@ const MyNoticeDIV = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    padding:10px;
 `
 
 const CurrentEventDIV = styled.div`
