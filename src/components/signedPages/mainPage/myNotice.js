@@ -9,6 +9,7 @@ function MyNotice(){
     const ID = useRecoilValue(UserID);
     const [userComingEvents, setUserComingEvents] = useState(0);
     const today = useState(new Date());
+    const currDay = 24 * 60 * 60 * 1000;
 
     useEffect(() => {
         const getUserComingEvents = async () => {
@@ -21,6 +22,11 @@ function MyNotice(){
         };
         getUserComingEvents();
     }, [ ID ]);
+    
+    const getDateOBJ = (dateString) => {    //YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2023-02-22T15:00:00.000Z
+        let date = new Date(dateString);
+        return date
+    }
 
     return(
         <MyNoticeDIV>
@@ -35,11 +41,11 @@ function MyNotice(){
                         "참여 중인 이벤트가 없습니다."
                         :
                         (
-                            (parseInt(userComingEvents[0].eventdate.slice(8,10)) - today[0].getDate()) === 0?
+                            (parseInt((getDateOBJ(userComingEvents[0].eventdate) - today[0])/currDay)) === 0?
                             "오늘은 '" + userComingEvents[0].name + "'입니다."
                             :
-                            "'" + userComingEvents[0].name + "'가 " +
-                            (parseInt(userComingEvents[0].eventdate.slice(8,10)) - today[0].getDate())
+                            "'" + userComingEvents[0].name + "'까지 " +
+                            (parseInt((getDateOBJ(userComingEvents[0].eventdate) - today[0])/currDay))
                             + "일 남았습니다."
                         )
                     )
@@ -59,7 +65,7 @@ function MyNotice(){
                                         <MyEventName>{event.name}</MyEventName>
                                         <MyEventPlace>{event.eventplace}</MyEventPlace>
                                         <MyEventDueDate>
-                                        D-{parseInt(event.eventdate.slice(8,10)) - today[0].getDate()}
+                                        D-{parseInt((getDateOBJ(event.eventdate) - today[0])/currDay)}
                                         </MyEventDueDate>
                                     </MyEventDIV>
                                 </div>
