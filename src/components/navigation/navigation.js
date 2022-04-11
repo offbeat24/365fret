@@ -34,7 +34,7 @@ function Navigation({ flag, setExpanded, clickIcon }){
     const expandSchedule = () => {
         setExpanded(prev => !prev);
     }
-    
+
     return(
             <Nav>
                 <CssBaseline/>

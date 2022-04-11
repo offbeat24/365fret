@@ -23,8 +23,8 @@ function MyPageNavigation({ flag, setFlag }){
 }
 
 const Nav = styled.div`
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
     height: 20px;
     display: flex;
     justify-content: space-between;

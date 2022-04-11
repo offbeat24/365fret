@@ -64,13 +64,16 @@ function MyHistory() {
 }
 
 const MyHistoryDIV = styled.div`
+    margin: 20px;
+    margin-top: 30px;
     display:flex;
     flex-direction:column;
     align-items:center;
     padding: 10px;
     background-color: #D9EDF8;
     border-radius: 0.5rem;
-    height: 100px;
+    min-height: 100px;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
 `
 
 const HistoryMsgDIV = styled.div`
