@@ -30,8 +30,7 @@ function Notice() {
     return (
         <NoticeDIV>
         <br/>
-            <Title>NOTICE</Title>
-            <BoldLine />
+            <Line />
             {
                 notices.map((notice, i) => {
                     return (
@@ -77,6 +76,7 @@ const PostDIV = styled.div`
 
 const PostTitle = styled.div`
     margin: 3px;
+    margin-left: 20px;
     margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -87,8 +87,8 @@ const PostDetail = styled.div`
     word-wrap: break-word;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
     color: #000000;
     font-size: 13px;
     min-height:0px;
@@ -104,12 +104,14 @@ const PostInformation = styled.div`
 const PostDate = styled.div`
     width: 170px;
     margin-bottom: -10px;
+    margin-left: 15px;
     font-size: 13px;
     color: #222D65;
 `
 
 const PostWritter = styled.div`
     font-size: 13px;
+    margin-right: 15px;
     text-align:right;
     width: 170px;
     font-weight: bold;
@@ -119,18 +121,24 @@ const PostWritter = styled.div`
 const Line = styled.hr`
     background-color: #4472C4;
     border: 0px;
-    height: 1px;
-`
-const BoldLine = styled.hr`
-    background-color: #4472C4;
-    border: 0px;
-    height: 3px;
+    height: 2px;
 `
 
-const Title = styled.div`
-    color: #222D65;
-    margin-left: 5px;
-    font-size: 23px;
-    font-weight: bold;
-`
+// const BoldLine = styled.hr`
+//     background-color: #4472C4;
+//     border: 0px;
+//     height: 3px;
+//     margin-left:-20px;
+//     margin-right:-20px;
+// `
+
+// const Title = styled.div`
+//     color: #222D65;
+//     padding-left:20px;
+//     margin-top: 10px;
+//     font-size: 25px;
+//     font-weight: bold;
+//     padding-left:20px;
+// `
+
 export default Notice;

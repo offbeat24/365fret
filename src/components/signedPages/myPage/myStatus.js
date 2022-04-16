@@ -72,13 +72,14 @@ const Page = styled.div`
 
 const MyEventDIV = styled.div`
   background-color: #D9EDF8;
-  border: solid #5E87B5 2px;
+  border: solid #D9EDF8 1px;
   border-radius: 0.5rem;
   min-height: 55px;
   margin: 0px;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 5px;
   padding: 10px;
+  box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
 `
 
 const EventDefault = styled.div`
