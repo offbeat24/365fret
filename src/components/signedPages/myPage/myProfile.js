@@ -63,7 +63,7 @@ const ProfileLeftInf = styled.div`
 `
 
 const ProfileRightInf = styled.div`
-    
+
 `
 
 const MyProfileName = styled.div`
@@ -71,7 +71,7 @@ const MyProfileName = styled.div`
     margin-left: 35px;
     text-align: center;
     text-justify: auto;
-    font-weight: bold; 
+    font-weight: bold;
     font-size: 20px;
     z-index: 3;
     top: 55%;

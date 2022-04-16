@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-//import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -16,19 +15,6 @@ import {Link} from "react-router-dom";
 import {UserID} from './recoil';
 import { useSetRecoilState } from 'recoil';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      {/* <Link color="inherit" href="https://mui.com/"> */}
-        14fret 늙은이들
-      {/* </Link>{' '} */}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 function SignIn(){
@@ -38,11 +24,10 @@ function SignIn(){
     setID(parseInt(wantID));
     console.log(`Log-In ID: ${wantID}`);
   }
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
     console.log({
       email: data.get('email'),
       password: data.get('password'),
@@ -102,14 +87,10 @@ function SignIn(){
             </Button>
             <Grid container>
               <Grid item xs>
-                {/* <Link href="#" variant="body2"> */}
                   <div>비밀번호 찾기</div>
-                {/* </Link> */}
               </Grid>
               <Grid item>
-                {/* <Link href="#" variant="body2"> */}
                   <div>{"회원가입"}</div>
-                {/* </Link> */}
               </Grid>
             </Grid>
             <input
@@ -125,7 +106,6 @@ function SignIn(){
             </button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
