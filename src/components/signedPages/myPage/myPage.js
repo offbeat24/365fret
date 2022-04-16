@@ -43,7 +43,7 @@ const MyProfileDIV = styled.div`
 const MyProfileName = styled.div`
     text-align: center;
     text-justify: auto;
-    font-weight: bold; 
+    font-weight: bold;
     font-size: 20px;
     z-index: 3;
     position: absolute;
@@ -75,5 +75,3 @@ const BoldLine = styled.hr`
 const RenderBoxStyle = styled.div`
 `
 export default MyPage;
-
-

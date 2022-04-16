@@ -1,23 +1,18 @@
-// import MainBlack from './MainBlack.png';
-//import SchedulerBlack from './SchedulerBlack.png';
-//import SettingBlack from './SettingBlack.png';
 import MainGray from './MainGray.png';
 import SchedulerGray from './SchedulerGray.png';
 import SettingGray from './SettingGray.png';
-// import MainWhite from './MainWhite.png';
-// import SchedulerWhite from './SchedulerWhite.png';
-// import SettingWhite from './SettingWhite.png';
-
 import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UserID } from '../recoil';
+import { UserID, Location } from '../recoil';
 import { url } from '../../modules/Url';
+import { Link } from 'react-router-dom'
 
-function Navigation({ flag, setExpanded, clickIcon }){
+function Navigation(){
     const ID = useRecoilValue(UserID);
+    const [Loc, setLocation] = useRecoilState(Location);
     const [userProfile, setUserProfile] = useState(0);
     useEffect(() => {
         const getUserProfile = async () => {
@@ -29,29 +24,79 @@ function Navigation({ flag, setExpanded, clickIcon }){
             })
         };
         getUserProfile();
-    }, [ ID ]);
+    }, [ID]);
 
-    const expandSchedule = () => {
-        setExpanded(prev => !prev);
-    }
-    
+
     return(
             <Nav>
                 <CssBaseline/>
-                <Logo onClick={() => clickIcon(0)}>365FRET</Logo>
+                <Link to={{
+                            pathname: `/test`
+                        }}>
+                    <Logo style={{
+                        backgroundColor:
+                            Loc === '/test' ?
+                                '#4472C4' : ''
+                    }}>365FRET</Logo>
+                </Link>
                 <NavLinkBox>
-                    <MainContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(1)} src={MainGray}/></MainContainer>
-                    <SchedulerContainer><NavBtnImg flag = {flag} onClick={() => expandSchedule()} src={SchedulerGray}/></SchedulerContainer>
-                    <SettingContainer><NavBtnImg flag = {flag} onClick={() => clickIcon(3)} src={SettingGray}/></SettingContainer>
+                <ImgContainer style={{
+                    backgroundColor:
+                        Loc === '/main' ?
+                            '#4472C4' : ''
+                }}>
+                    <Link to={{
+                            pathname: `/main`
+                        }}>
+                        <NavBtnImg onClick={() => setLocation('/main')} src={MainGray} />
+                    </Link>
+                </ImgContainer>
+                <SchedulerContainer style={{
+                    backgroundColor:
+                        Loc === '/main/schedule/output'?
+                            '#4472C4' : ''
+                }}>
+                    <Link to={{
+                        pathname: `/main/schedule/output`
+                    }}>
+                        <NavBtnImg onClick={() => setLocation('/main/schedule/output')} src={SchedulerGray} />
+                    </Link>
+                </SchedulerContainer>
+                <SchedulerContainer style={{
+                    backgroundColor:
+                        Loc === '/main/schedule/input' ?
+                            '#4472C4' : ''
+                }}>
+                    <Link to={{
+                        pathname: `/main/schedule/input`
+                    }}>
+                        <NavBtnImg onClick={() => setLocation('/main/schedule/input')} src={SchedulerGray} />
+                        </Link>
+                </SchedulerContainer>
+                <SettingContainer style={{
+                    backgroundColor:
+                        Loc === '/main/setting' ?
+                            '#4472C4' : ''
+                }}>
+                    <Link to={{
+                            pathname: `/main/setting`
+                        }}>
+                        <NavBtnImg onClick={() => setLocation('/main/setting')} src={SettingGray} />
+                    </Link>
+                </SettingContainer>
                     <NavLink>
-                        <Circle onClick={() => clickIcon(4)}>
-                            {
-                                userProfile === 0 ?
-                                ''
-                                :
-                                userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
-                            }
-                        </Circle>
+                    <Link to={{
+                            pathname: `/main/profile`
+                        }}>
+                        <Circle onClick={() => setLocation('/main/profile')}>
+                                {
+                                    userProfile === 0 ?
+                                    ''
+                                    :
+                                    userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
+                                }
+                            </Circle>
+                        </Link>
                     </NavLink>
                 </NavLinkBox>
             </Nav>
@@ -99,9 +144,6 @@ const ImgContainer = styled.div`
     line-height: 35px;
     color: transparent;
     z-index: 2;
-`
-
-const MainContainer = styled(ImgContainer)`
     background-color: ${ props => ( props.flag === 1 ? '#4472C4' : '' )};
 `
 
