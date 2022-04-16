@@ -75,6 +75,7 @@ function SignedPages(){
 // `
 
 const PageRender = styled.div`
+    margin:10px;
 `
 
 const RenderBoxStyle = styled.div`

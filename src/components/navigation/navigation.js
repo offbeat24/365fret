@@ -26,7 +26,6 @@ function Navigation(){
         getUserProfile();
     }, [ID]);
 
-
     return(
             <Nav>
                 <CssBaseline/>
