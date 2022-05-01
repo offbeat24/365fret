@@ -14,10 +14,11 @@ function Main() {
 const Page = styled.div`
 `
 const MyNoticeDIV = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 15px;
   margin-left: 10px;
   margin-right: 10px;
-  background-color: #D9EDF8;
+  background-color: #DAE3F3;
   border-radius: 0.5rem;
   height: 130px;
   box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);

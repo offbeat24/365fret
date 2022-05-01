@@ -52,7 +52,7 @@ const MyProfileDIV = styled.div`
     border-radius: 0.5rem;
     height: 160px;
     position: relative;
-    z-index: 2;
+    z-index: -1;
     display: flex;
     justify-content: space-between;
     box-shadow: 0 1px 20px 0 rgba(0,0,0,0.3);
