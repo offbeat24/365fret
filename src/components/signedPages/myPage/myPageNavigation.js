@@ -37,7 +37,7 @@ const NavBtn1 = styled.div`
     font-weight: bold;
     width: 80px;
     text-align: center;
-    border-bottom: ${ props => `${ props.flag === 0 ? 'solid #4472C4 3.5px' : '' }`};
+    border-bottom: ${ props => `${ props.flag === 0 ? 'solid lightgrey 2px' : '' }`};
 `
 
 const NavBtn2 = styled.div`
@@ -46,7 +46,7 @@ const NavBtn2 = styled.div`
     font-weight: bold;
     width: 80px;
     text-align: center;
-    border-bottom: ${ props => `${ props.flag === 1 ? 'solid #4472C4 3.5px' : '' }`};
+    border-bottom: ${ props => `${ props.flag === 1 ? 'solid lightgrey 2px' : '' }`};
 `
 
 const NavBtn3 = styled.div`
@@ -55,7 +55,7 @@ const NavBtn3 = styled.div`
     font-weight: bold;
     width: 80px;
     text-align: center;
-    border-bottom: ${ props => `${ props.flag === 2 ? 'solid #4472C4 3.5px' : '' }`};
+    border-bottom: ${ props => `${ props.flag === 2 ? 'solid lightgrey 2px' : '' }`};
 `
 
 export default MyPageNavigation;

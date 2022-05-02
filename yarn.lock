@@ -1267,11 +1267,35 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
+"@fullcalendar/bootstrap5@^5.11.0":
+  "integrity" "sha512-JWJS45xSuR5jE0qSZKAfsbdQKmL5oiQSqH23J0mf0dknEa+PxbvdxdtdBgLVq2daMPhSQEFGeiv5FO6PJVAQmQ=="
+  "resolved" "https://registry.npmjs.org/@fullcalendar/bootstrap5/-/bootstrap5-5.11.0.tgz"
+  "version" "5.11.0"
+  dependencies:
+    "@fullcalendar/common" "~5.11.0"
+    "tslib" "^2.1.0"
+
 "@fullcalendar/common@~5.10.1":
   "integrity" "sha512-EumKIJcQTvQdTs75/9dmeREFgjcRVWzqHJS1Xvlz5mNsmB+w9EINCHETRjChtAQg1WD/lTQyVj4sHsKO7vCMSw=="
   "resolved" "https://registry.npmjs.org/@fullcalendar/common/-/common-5.10.1.tgz"
   "version" "5.10.1"
   dependencies:
+    "tslib" "^2.1.0"
+
+"@fullcalendar/common@~5.11.0":
+  "integrity" "sha512-gWjbMAnN1u73Oqlgjbyky7i+3bY0hvFSnGT0YBPx44n874AkQa9e9OU12PMLTMOPy0tXPb8DEwRelFQ7CJNbcw=="
+  "resolved" "https://registry.npmjs.org/@fullcalendar/common/-/common-5.11.0.tgz"
+  "version" "5.11.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@fullcalendar/core@^5.11.0":
+  "integrity" "sha512-cF/d9LuJb/6xw14ms0urv1H4BiA70c4jrufe/EuVzLR6qTDpK92IZ3JK7GVtZtzptfTYZ/NQgDV9YCzIaO9Blw=="
+  "resolved" "https://registry.npmjs.org/@fullcalendar/core/-/core-5.11.0.tgz"
+  "version" "5.11.0"
+  dependencies:
+    "@fullcalendar/common" "~5.11.0"
+    "preact" "^10.0.5"
     "tslib" "^2.1.0"
 
 "@fullcalendar/daygrid@^5.10.1":
@@ -1629,7 +1653,7 @@
     "schema-utils" "^3.0.0"
     "source-map" "^0.7.3"
 
-"@popperjs/core@^2.4.4":
+"@popperjs/core@^2.10.2", "@popperjs/core@^2.4.4":
   "integrity" "sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.2.tgz"
   "version" "2.11.2"
@@ -2968,6 +2992,16 @@
   "integrity" "sha1-aN/1++YMUes3cl6p4+0xDcwed24="
   "resolved" "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   "version" "1.0.0"
+
+"bootstrap-icons@^1.8.1":
+  "integrity" "sha512-IXUqislddPJfwq6H+2nTkHyr9epO9h6u1AG0OZCx616w+TgzeoCjfmI3qJMQqt1J586gN2IxzB4M99Ip4sTZ1w=="
+  "resolved" "https://registry.npmjs.org/bootstrap-icons/-/bootstrap-icons-1.8.1.tgz"
+  "version" "1.8.1"
+
+"bootstrap@^5.1.3":
+  "integrity" "sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q=="
+  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-5.1.3.tgz"
+  "version" "5.1.3"
 
 "brace-expansion@^1.1.7":
   "integrity" "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA=="
@@ -7337,6 +7371,11 @@
   dependencies:
     "picocolors" "^0.2.1"
     "source-map" "^0.6.1"
+
+"preact@^10.0.5":
+  "integrity" "sha512-MufnRFz39aIhs9AMFisonjzTud1PK1bY+jcJLo6m2T9Uh8AqjD77w11eAAawmjUogoGOnipECq7e/1RClIKsxg=="
+  "resolved" "https://registry.npmjs.org/preact/-/preact-10.7.1.tgz"
+  "version" "10.7.1"
 
 "prelude-ls@^1.2.1":
   "integrity" "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="

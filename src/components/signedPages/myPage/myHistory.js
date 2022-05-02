@@ -73,7 +73,7 @@ const MyHistoryDIV = styled.div`
     background-color: #D9EDF8;
     border-radius: 0.5rem;
     min-height: 100px;
-    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);
 `
 
 const HistoryMsgDIV = styled.div`
@@ -83,7 +83,7 @@ const HistoryMsgDIV = styled.div`
 
 const HistoryMsg = styled.div`
     text-align:center;
-    font-size: 21px;
+    font-size: 19px;
     color: #222D65;
     font-weight:bold;
 `

@@ -79,7 +79,7 @@ const MyEventDIV = styled.div`
   margin-top: 20px;
   font-size: 5px;
   padding: 10px;
-  box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 20px 0 rgba(0,0,0,0.1);
 `
 
 const EventDefault = styled.div`

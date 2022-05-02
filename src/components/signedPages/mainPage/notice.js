@@ -119,7 +119,7 @@ const PostWritter = styled.div`
 `
 
 const Line = styled.hr`
-    background-color: #4472C4;
+    background-color: lightgrey;
     border: 0px;
     height: 2px;
 `

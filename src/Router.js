@@ -22,7 +22,7 @@ function Router() {
         {
           ID !== -1
             ?
-            <Navigation />
+            <Header><Navigation /></Header>
             :
             <Fragment />
         }
@@ -44,4 +44,10 @@ function Router() {
 const TempTheme = styled.div`
   font-family: NanumGothic;
 `
+
+const Header = styled.div`
+  background-color: #324182;
+  height:77px;
+`
+
 export default Router;
