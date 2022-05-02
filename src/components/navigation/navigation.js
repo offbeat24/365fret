@@ -54,8 +54,8 @@ function Navigation(){
                         <Link to={{
                             pathname: `/main/profile`
                         }}>
-                            <ProfileCard>
-                                <Circle onClick={() => {setLocation('/main/profile'); setSideExpended(0);}} style = {{textDecoration:'underline white'}}>
+                            <ProfileCard style = {{textDecoration:'underline white'}}>
+                                <Circle onClick={() => {setLocation('/main/profile'); setSideExpended(0);}} style = {{textDecoration:'underline #324182'}}>
                                     {
                                         userProfile === 0 ?
                                         ''
@@ -63,7 +63,7 @@ function Navigation(){
                                         userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
                                     }
                                 </Circle>
-                                프로필카드입니당
+                                프로필카드(클릭하면 마이페이지로 이동)
                             </ProfileCard>
                         </Link>
                     </NavLink>
@@ -121,11 +121,18 @@ const ProfileCard = styled.div`
     border-radius: 0.5rem;
     border: solid 0px black;
     box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
+    background-color:white;
+    color: black;
 `
 
 const NavigationList = styled.div`
     margin: 20px;
     padding: 10px;
+    background-color:white;
+    border-radius: 0.5rem;
+    border: solid 0px black;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
+    color: black;
 `
 
 const NavigationFooter = styled.div`
@@ -135,6 +142,8 @@ const NavigationFooter = styled.div`
     border-radius: 0.5rem;
     border: solid 0px black;
     box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
+    background-color:white;
+    color: black;
 `
 
 const SideBar = styled.div`
@@ -216,13 +225,13 @@ const Circle = styled.div`
     margin: 0px;
     width: 35px;
     height: 35px;
-    background-color: white;
+    background-color: #324182;
     border-radius: 50%;
     text-align: center;
     line-height: 35px;
     font-weight: bold;
     font-size: 15px;
-    color: black;
+    color: white;
     text-decoration: none;
 `
 export default Navigation;
