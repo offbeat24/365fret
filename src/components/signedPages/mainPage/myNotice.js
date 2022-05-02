@@ -24,8 +24,7 @@ function MyNotice(){
     }, [ ID ]);
     
     const getDateOBJ = (dateString) => {    //YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2023-02-22T15:00:00.000Z
-        let date = new Date(dateString);
-        return date
+        return new Date(dateString)
     }
 
     return(
@@ -94,7 +93,7 @@ const CurrentEventDIV = styled.div`
 
 const CurrentEventInform = styled.div`
     text-align:center;
-    font-size: 21px;
+    font-size: 19px;
     color: #222D65;
     font-weight:bold;
 `

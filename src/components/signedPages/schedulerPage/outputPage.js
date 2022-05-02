@@ -1,16 +1,23 @@
+import ListFilter from './ListFilter.png';
 import axios from "axios";
 import styled from 'styled-components';
 import { useEffect, useState } from "react";
 import { url } from '../../../modules/Url';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import ListFilter from './ListFilter.png';
 
 function OutputPage(){
-    const [events, setEvents] = useState(0);
-    const [eventsReformed, setEventsReformed] = useState(0);
+    const [eventsReformed, setEventsReformed] = useState([]);
     const [expanded, setExpanded] = useState(-1);
     const [filterExpanded, setFilterExpanded] = useState(0);
+    const [passedEventsFilter, setPassedEventsFilter] = useState(1);
+    const [showingEvents, setShowingEvents] = useState(0);
+    const today = useState(new Date());
+    const currDay = 24 * 60 * 60 * 1000;
+    
+    const getDateOBJ = (dateString) => {    //YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2023-02-22T15:00:00.000Z
+        return new Date(dateString)
+    }
 
     const handleExpand = (key) => {
         key === expanded?
@@ -28,42 +35,65 @@ function OutputPage(){
                 `${url}/getEvents`
             ).then(response =>{
                 response.data.result.map(c => Object.assign(c, { flag: false }))
-                setEvents(response.data.result)
                 let eventsReformed = [];
                 response.data.result.forEach(c=>{
-                    let event = {
+                    let event = {//title,color,start,end,date,time,type
                         title: c.name,
-                        color: '#1e1e1e'
+                        color: '#1e1e1e',
+                        type: c.type,
+                        place: c.eventplace
                     }
                     if (c.startdate){
-                        event.start = c.startdate.slice(0,10)  
+                        event.start = c.startdate
                         //startdate가 있는 경우 event의 start를 startdate로 설정
                         if(c.enddate){
-                            event.end = c.enddate.slice(0,10)  
+                            event.end = c.enddate
                             //startdate가 있고, enddate가 있는 경우 event의 end를 enddate로 설정
                         }else if(c.eventdate){
-                            event.end = c.eventdate.slice(0,10)
+                            event.end = c.eventdate
                             //startdate가 있는데 enddate가 없으면서 eventdate가 있는 경우 event의 end를 eventdate로 설정
                         }
                     }else if(c.enddate){
-                        event.date = c.enddate.slice(0,10) 
+                        event.date = c.enddate
                         //startdate가 없는데 enddate가 있는 경우 event의 date를 enddate로 설정
                     }else if(c.eventdate){
-                        event.date = c.eventdate.slice(0,10)
+                        event.date = c.eventdate
                         //startdate가 없는데 eventdate가 있는 경우 event의 date를 eventdate로 설정
                     }
                     eventsReformed.push(event)
                 })
                 setEventsReformed(eventsReformed);
+                setShowingEvents(eventsReformed);
             })
         }
         getEvents();
     }, [])
 
+    const onChangePassedEventsFilter = () => {
+        setPassedEventsFilter(prev => !prev);
+    }
+
+    const filterShowingEvents = () => {
+        if(passedEventsFilter){
+            setShowingEvents(eventsReformed);
+        }
+        else{
+            let tempEvents = [];
+            eventsReformed.forEach(c =>{
+                if (parseInt((getDateOBJ(c.eventdate))-today[0])/currDay >= 0){
+                    tempEvents.push(c);
+                }
+            })
+            setShowingEvents(tempEvents);
+        }
+    }
+
+    useEffect(filterShowingEvents,[passedEventsFilter])
+
     return (
         <Page>
         {
-            eventsReformed === 0
+            eventsReformed === []
             ?
                 ''
             :
@@ -99,18 +129,18 @@ function OutputPage(){
                 <ListFilterList>
                     <ListFilterItem>
                         <ListFilterDetail>지난 이벤트 보기</ListFilterDetail>
-                        <ListFilterCheck type="checkbox"/>
+                        <ListFilterCheck type="checkbox" checked={passedEventsFilter} onChange={() => onChangePassedEventsFilter()}/>
                     </ListFilterItem>
                     <ListFilterItem>
                         <ListFilterDetail>참여 이벤트</ListFilterDetail>
                         <ListFilterCheck type="checkbox"/>
                     </ListFilterItem>
                     <ListFilterItem>
-                        <ListFilterDetail>공연 일정</ListFilterDetail>
+                        <ListFilterDetail>eventType:1</ListFilterDetail>
                         <ListFilterCheck type="checkbox"/>
                     </ListFilterItem>
                     <ListFilterItem>
-                        <ListFilterDetail>합주 일정</ListFilterDetail>
+                        <ListFilterDetail>eventType:2</ListFilterDetail>
                         <ListFilterCheck type="checkbox"/>
                     </ListFilterItem>
                 </ListFilterList>
@@ -119,39 +149,39 @@ function OutputPage(){
                 }
             </ListHeader>
         {
-          events === 0
+          eventsReformed === []
           ?
             'Loading...'
           :
             (
-              events.map((event,i) => {
+              eventsReformed.map((event,i) => {
                 return (
                   <div key = {i}>
                     <OutputEventDIV onClick={() => handleExpand(i)}>
                         <OutputEventTitle>
-                            {event.name}
+                            {event.title}
                         </OutputEventTitle>
                         <OutputEventDetail>
                             {
                                 expanded === i ?
-                                (event.eventplace?
-                                '\n장소: ' + event.eventplace
+                                (event.place?
+                                '\n장소: ' + event.place
                                 :
                                 ''
                                 )
                                 +
-                                (event.startdate?
-                                '\n시작날짜: ' + event.startdate.slice(0,10)
+                                (event.start?
+                                '\n시작날짜: ' + event.start.slice(0,10)
                                 +
-                                '\n시작시간: ' + event.startdate.slice(11,19)
+                                '\n시작시간: ' + event.start.slice(11,19)
                                 :
                                 ''
                                 )
                                 +
-                                (event.enddate?
-                                '\n끝날짜: ' + event.enddate.slice(0,10)
+                                (event.end?
+                                '\n끝날짜: ' + event.end.slice(0,10)
                                 +
-                                '\n끝시간: ' + event.enddate.slice(11,19)
+                                '\n끝시간: ' + event.end.slice(11,19)
                                 :
                                 ''
                                 )
@@ -166,8 +196,8 @@ function OutputPage(){
                             }
                         </OutputEventDetail>
                         <OutputEventDate>
-                            {event.eventdate?
-                            '이벤트 날짜: ' + event.eventdate.slice(0,10)
+                            {event.date?
+                            '이벤트 날짜: ' + event.date.slice(0,10)
                             :
                             ''}
                         </OutputEventDate>
@@ -267,7 +297,7 @@ const OutputEventDIV = styled.div`
 `
 
 const OutputEventTitle = styled.a`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 `
 
