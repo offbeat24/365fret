@@ -1,8 +1,4 @@
-import MainGray from './MainGray.png';
-import SchedulerGray from './SchedulerGray.png';
-import SettingGray from './SettingGray.png';
 import ThreeBars from './Threebars.png';
-import Instagram from './instagram.svg';
 import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -17,6 +13,7 @@ function Navigation(){
     const [Loc, setLocation] = useRecoilState(Location);
     const [userProfile, setUserProfile] = useState(0);
     const [sideExpended, setSideExpended] = useState(0);
+    const [scheduleExpended, setScheduleExpended] = useState(0);
     useEffect(() => {
         const getUserProfile = async () => {
             await axios.post(
@@ -31,6 +28,10 @@ function Navigation(){
 
     const sideExpend = () => {
         setSideExpended(prev => {return !prev});
+    }
+
+    const scheduleExpend = () => {
+        setScheduleExpended(prev => {return !prev});
     }
 
     return(
@@ -49,13 +50,15 @@ function Navigation(){
                 <Hamburger onClick={() => sideExpend()} src={ThreeBars} />
                 {sideExpended
                 ?
+                <SideBarDIV>
+                    <SideBarBG onClick={() => sideExpend()}/>
                 <SideBar>
                     <NavLink>
                         <Link to={{
                             pathname: `/main/profile`
                         }}>
-                            <ProfileCard style = {{textDecoration:'underline white'}}>
-                                <Circle onClick={() => {setLocation('/main/profile'); setSideExpended(0);}} style = {{textDecoration:'underline #324182'}}>
+                            <ProfileCard onClick={() => {setLocation('/main/profile'); setSideExpended(0);setScheduleExpended(0);}} style = {{textDecoration:'underline white'}}>
+                                <Circle style = {{textDecoration:'underline #324182'}}>
                                     {
                                         userProfile === 0 ?
                                         ''
@@ -63,51 +66,74 @@ function Navigation(){
                                         userProfile[userProfile.length-1].name[(userProfile[userProfile.length-1].name.length)-1]
                                     }
                                 </Circle>
-                                프로필카드(클릭하면 마이페이지로 이동)
+                                <ProfileCardContent style = {{textDecoration:'underline white'}}>
+                                    {
+                                        userProfile === 0?
+                                        ''
+                                        :
+                                        String(userProfile[userProfile.length-1].year) + "기 " +userProfile[userProfile.length-1].name
+                                    }
+                                </ProfileCardContent>
                             </ProfileCard>
                         </Link>
                     </NavLink>
                     <NavigationList>
                         <NavLinkBox>
-                            <ImgContainer style={{
-                                backgroundColor:
-                                    Loc === '/main' ?
-                                        '#4472C4' : ''
+                        <Link to={{
+                            pathname: `/main`
+                        }}>
+                            <NavLinkList
+                            onClick={() => {setLocation('/main'); setSideExpended(0); setScheduleExpended(0);}}
+                            style = {{textDecoration:'underline white'}}
+                            >
+                                &gt; HOME
+                            </NavLinkList>
+                        </Link>
+                        <NavLinkList onClick={() => scheduleExpend()}>&gt; SCHEDULE</NavLinkList>
+                        {scheduleExpended?
+                        ''
+                        :
+                        <NavLinkScheduleBox>
+                            <Link to={{
+                                pathname: `/main/schedule/output`
                             }}>
-                                <Link to={{
-                                        pathname: `/main`
-                                    }}>
-                                    <NavBtnImg onClick={() => {setLocation('/main'); setSideExpended(0);}} src={MainGray} />
-                                </Link>
-                            </ImgContainer>
-                            <SchedulerContainer style={{
-                                backgroundColor:
-                                    Loc === '/main/schedule/output'?
-                                        '#4472C4' : ''
+                                <NavLinkScheduleList
+                                onClick={() => {setLocation('/main/schedule/output'); setSideExpended(0);setScheduleExpended(0);}}
+                                style = {{textDecoration:'underline white'}}
+                                >
+                                    &gt; OUTPUT
+                                </NavLinkScheduleList>
+                            </Link> 
+                            <Link to={{
+                                pathname: `/main/schedule/input`
                             }}>
-                                <Link to={{
-                                    pathname: `/main/schedule/output`
-                                }}>
-                                    <NavBtnImg onClick={() => {setLocation('/main/schedule/output'); setSideExpended(0);}} src={SchedulerGray} />
-                                </Link>
-                            </SchedulerContainer>
-                            <SettingContainer style={{
-                                backgroundColor:
-                                    Loc === '/main/setting' ?
-                                        '#4472C4' : ''
-                            }}>
-                                <Link to={{
-                                        pathname: `/main/setting`
-                                    }}>
-                                    <NavBtnImg onClick={() => {setLocation('/main/setting'); setSideExpended(0);}} src={SettingGray} />
-                                </Link>
-                            </SettingContainer>
+                                <NavLinkScheduleList
+                                onClick={() => {setLocation('/main/schedule/input'); setSideExpended(0);setScheduleExpended(0);}}
+                                style = {{textDecoration:'underline white'}}
+                                >
+                                    &gt; INPUT
+                                </NavLinkScheduleList>
+                            </Link> 
+                        </NavLinkScheduleBox>
+                        }
+                        <Link to={{
+                            pathname: `/main/setting`
+                        }}>
+                            <NavLinkList
+                            onClick={() => {setLocation('/main/setting'); setSideExpended(0);setScheduleExpended(0);}}
+                            style = {{textDecoration:'underline white'}}
+                            >
+                                &gt; SETTING
+                            </NavLinkList>
+                        </Link>
                         </NavLinkBox>
                     </NavigationList>
                     <NavigationFooter>
-                        <img src = {Instagram}/>
+                        <FooterLink href={'https://www.youtube.com/channel/UCh_LKaXnsbdB9n3ebGsLUEQ'} target={'_blank'} style = {{textDecoration: 'underline white'}}>YOUTUBE</FooterLink>
+                        <FooterLink href={'https://www.instagram.com/14fre_t/'} target={'_blank'} style = {{textDecoration: 'underline white'}}>INSTAGRAM</FooterLink>
                     </NavigationFooter>
                 </SideBar>
+                </SideBarDIV>
                 :
                 ''
                 }
@@ -115,9 +141,32 @@ function Navigation(){
     );
 }
 
+const SideBarDIV = styled.a`
+    position:fixed;
+`
+
+const SideBarBG = styled.div`
+    left:0;
+    top:77px;
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index:15;
+`
+
+const ProfileCardContent = styled.a`
+    font-size:18px;
+    line-height:35px;
+`
+
 const ProfileCard = styled.div`
+    display: flex;
+    justify-content: space-between;
     margin: 20px;
     padding: 15px;
+    padding-left:20px;
+    padding-right:25px;
     border-radius: 0.5rem;
     border: solid 0px black;
     box-shadow: 0 1px 20px 0 rgba(0,0,0,0.2);
@@ -136,6 +185,9 @@ const NavigationList = styled.div`
 `
 
 const NavigationFooter = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 20px;
     margin-top: 60px;
     padding: 10px;
@@ -146,15 +198,23 @@ const NavigationFooter = styled.div`
     color: black;
 `
 
+const FooterLink = styled.a`
+    flex-wrap: wrap;
+    display: flex;
+    margin:5px;
+    color:grey;
+    font-size:13px;
+`
+
 const SideBar = styled.div`
-    padding-top: 50px;
+    margin-top: 77px;
     margin-top:;
     right: 0px;
     width: 60%;
     height: 100%;
-    position:absolute;
+    position:fixed;
     background-color: #324182;
-    z-index:2;
+    z-index:30;
 `
 
 const Nav = styled.div`
@@ -163,7 +223,7 @@ const Nav = styled.div`
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    z-index: 3;
+    z-index: 20;
 `
 
 const Logo = styled.a`
@@ -177,7 +237,25 @@ const Logo = styled.a`
     text-decoration: none;
 `
 
-const NavLinkBox = styled.div`
+const NavLinkBox = styled.ul`
+    margin-top: -30px;
+    padding-left:10px;
+    list-style:none;
+    font-size: 20px;
+`
+const NavLinkList = styled.li`
+    margin-top: 50px;
+    font-weight:bold;
+    color: black;
+`
+const NavLinkScheduleBox = styled.ul`
+    padding-left:15px;
+    list-style:none;
+    font-size: 15px;
+`
+const NavLinkScheduleList = styled.li`
+    margin-top: 5px;
+    color: grey;
 `
 
 const NavLink = styled.a`
@@ -186,32 +264,7 @@ const NavLink = styled.a`
     color: black;
     color: #222D65;
 `
-const ImgContainer = styled.div`
-    margin: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 35px;
-    color: transparent;
-    z-index: 2;
-    background-color: ${ props => ( props.flag === 1 ? '#4472C4' : '' )};
-`
 
-const SchedulerContainer = styled(ImgContainer)`
-    background-color: ${ props => ( props.flag === 2 ? '#4472C4' : '' )};
-`
-
-const SettingContainer = styled(ImgContainer)`
-    background-color: ${ props => ( props.flag === 3 ? '#4472C4' : '' )};
-`
-const NavBtnImg = styled.img`
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: transparent;
-    z-index: 3;
-`
 const Hamburger = styled.img`
     margin-top: 22px;
     width: 30px;
