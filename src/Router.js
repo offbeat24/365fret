@@ -26,16 +26,18 @@ function Router() {
             :
             <Fragment />
         }
-        <Routes>
-          <Route path = "/" element={<SignIn />} />
-          <Route path = "/main" element={<SignedPages />} />
-          <Route path = "/main/schedule/output" element={<OutputPage />} />
-          <Route path = "/main/schedule/input" element={<InputPage />} />
-          <Route path = "/main/setting" element={<Setting />} />
-          <Route path = "/main/profile" element={<MyPage />} />
-          <Route path = "/test" element={<Test />} />
-        </Routes>
-        <Copyright sx={{ mt: 8, mb: 4 }}/>
+        <Body>
+          <Routes>
+            <Route path = "/" element={<SignIn />} />
+            <Route path = "/main" element={<SignedPages />} />
+            <Route path = "/main/schedule/output" element={<OutputPage />} />
+            <Route path = "/main/schedule/input" element={<InputPage />} />
+            <Route path = "/main/setting" element={<Setting />} />
+            <Route path = "/main/profile" element={<MyPage />} />
+            <Route path = "/test" element={<Test />} />
+          </Routes>
+          <Copyright sx={{ mt: 8, mb: 4 }}/>
+        </Body>
       </BrowserRouter>
     </TempTheme>
   )
@@ -45,9 +47,17 @@ const TempTheme = styled.div`
   font-family: NanumGothic;
 `
 
+const Body = styled.div`
+  padding-top:77px;
+  z-index:10;
+`
+
 const Header = styled.div`
+  width:100%;
+  position:fixed;
   background-color: #324182;
   height:77px;
+  z-index:20;
 `
 
 export default Router;

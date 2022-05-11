@@ -214,6 +214,7 @@ function OutputPage(){
 
 const Page = styled.div`
   margin: 10px;
+  z-index:1;
 `
 
 const ListHeader = styled.div`
@@ -321,6 +322,7 @@ const CalendarDIV = styled.div`
     padding: 10px;
     min-height: 448px;
     flex-grow: 1;
+    z-index: 30;
 `
 
 export default OutputPage;
