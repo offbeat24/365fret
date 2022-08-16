@@ -208,7 +208,7 @@ const FooterLink = styled.a`
 
 const SideBar = styled.div`
     margin-top: 77px;
-    margin-top:;
+    margin-top: 0px;
     right: 0px;
     width: 60%;
     height: 100%;
